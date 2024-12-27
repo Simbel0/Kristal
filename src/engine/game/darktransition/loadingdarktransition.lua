@@ -171,6 +171,33 @@ function LoadingDarkTransition:init(final_y, options)
     self.particle_timer = 1
 end
 
+function LoadingDarkTransition:onResuming()
+    self.resuming = true
+    --self.con=33
+    self.do_once=true
+    self.do_once2=true
+    self.do_once3=true
+    self.do_once4=true
+    
+    self.megablack=true
+    --self.timer=42.25
+    --self.velocity=13
+    for i, data in ipairs(self.character_data) do
+        data.x = DTRANS[i].x
+        data.y = DTRANS[i].y - 230
+        data.sprite_1:set("ball") -- or data.sprite_1:set("jump_ball")
+        data.sprite_2:set("ball") -- or data.sprite_2:set("jump_ball")
+        data.sprite_3:set("ball") -- or data.sprite_3:set("jump_ball")
+
+        data.sprite_1.visible = true
+        data.sprite_2.visible = true
+        data.sprite_3.visible = true
+
+        data.sprite_2.alpha = 0.5
+        data.sprite_3.alpha = 0.25
+    end
+end
+
 function LoadingDarkTransition:onAddToStage(stage)
     for _, music in ipairs(Music.getPlaying()) do
         music:fade(0, 20 / 30)
