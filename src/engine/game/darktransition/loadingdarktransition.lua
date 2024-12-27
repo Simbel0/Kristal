@@ -136,6 +136,7 @@ function LoadingDarkTransition:init(final_y, options)
     self.do_once11 = false
     self.do_once12 = false
     self.do_once13 = false
+    self.do_once14 = false
 
     if options["resuming"] then
         self.resuming = true
@@ -614,6 +615,14 @@ function LoadingDarkTransition:draw()
                 self.kris_head_object.breakcon = 1
             end
 
+            if not self.do_once14 then
+                self.do_once14 = true
+                if self.loading_callback then
+                    self:setParent(Kristal.Stage)
+                    self.loading_callback(self)
+                end
+            end
+
             if self.sparkles > 0 then
                 Assets.playSound("sparkle_glock")
             end
@@ -658,27 +667,32 @@ function LoadingDarkTransition:draw()
             self.threshold = 40
         end
         if (self.timer >= self.threshold) then
-            if (self.quick_mode) then
-                self.linecon = false
-            end
-            self.timer    = 0
-            self.velocity = -0.2
-            self.friction = 0.01
-            self.con      = 32
+            if self.resuming then
+                self:setParent(Game.world)
 
-            for _, data in ipairs(self.character_data) do
-                data.x = Utils.round(data.x)
-                data.y = Utils.round(data.y)
+                if (self.quick_mode) then
+                    self.linecon = false
+                end
+                print("Next step 32")
+                self.timer    = 0
+                self.velocity = -0.2
+                self.friction = 0.01
+                self.con      = 32
 
-                data.sprite_1:set("smear")
-                data.sprite_1:setFrame(1)
+                for _, data in ipairs(self.character_data) do
+                    data.x = Utils.round(data.x)
+                    data.y = Utils.round(data.y)
 
-                data.sprite_2.visible = false
-                data.sprite_3.visible = false
+                    data.sprite_1:set("smear")
+                    data.sprite_1:setFrame(1)
 
-                data.sprite_1:setCutout()
-                data.sprite_2:setCutout()
-                data.sprite_3:setCutout()
+                    data.sprite_2.visible = false
+                    data.sprite_3.visible = false
+
+                    data.sprite_1:setCutout()
+                    data.sprite_2:setCutout()
+                    data.sprite_3:setCutout()
+                end
             end
         end
     end
@@ -761,9 +775,6 @@ function LoadingDarkTransition:draw()
             self.linecon = false
         end
         if (math.floor(self.timer) >= 48) and not self.do_once5 then
-            if self.loading_callback then
-                self.loading_callback(self)
-            end
             self.do_once5 = true
             for i, data in ipairs(self.character_data) do
                 data.y = -57

@@ -11,10 +11,13 @@ return function(cutscene)
     Game.world.camera:setPosition(markx, marky)
     cutscene:detachFollowers()
     Kristal.hideBorder(1)
-    local transition = LoadingDarkTransition(300, {
+    --[[local transition = LoadingDarkTransition(300, {
         resuming = true,
         character_data = DTRANS
-    })
+    })]]
+    transition = Kristal.Stage:getObjects(LoadingDarkTransition)[1]
+    transition.resuming = true
+    transition.character_data = DTRANS
     transition.layer = WORLD_LAYERS["top"]
     local waiting = true
     local endData
@@ -22,7 +25,7 @@ return function(cutscene)
         waiting = false
         endData = data
     end
-    Game.world:addChild(transition)
+    transition:setParent(Game.world)
     cutscene:wait(function() return not waiting end)
     for _, character in ipairs(endData) do
         local char = Game.world:getPartyCharacterInParty(character.party)
