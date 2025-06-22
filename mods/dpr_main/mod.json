@@ -166,5 +166,9 @@
 			"kristal": {
 				"growStronger": false
 			}
-    }
+    },
+
+    "sharedlibs": [
+    	"elevators"
+    ]
 }

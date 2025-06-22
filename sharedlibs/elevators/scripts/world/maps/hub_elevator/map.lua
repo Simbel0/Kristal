@@ -29,6 +29,9 @@ function Elevator:onEnter()
 
             -- Copy data from ELEVATOR_TRANSITION to the elevator.
 
+            print("ELEVATOR_TRANSITION[\"target_name\"]", ELEVATOR_TRANSITION["target_name"])
+            print('ELEVATOR_TRANSITION["target_dest"]', ELEVATOR_TRANSITION["target_dest"])
+
             if not ELEVATOR_TRANSITION["target_floor"] then -- Floor number wasn't set! Let's see if we can find it.
                 -- First, check for a floor name.
                 if elevator:getFloorByName(ELEVATOR_TRANSITION["target_name"]) then
@@ -44,6 +47,8 @@ function Elevator:onEnter()
             else
                 elevator.target_floor =    ELEVATOR_TRANSITION["target_floor"]
             end
+
+            ---elevator:setExit(ELEVATOR_TRANSITION["target_dest"] or Mod.info.map)
 
             elevator.dir =             ELEVATOR_TRANSITION["target_dir"] or 1
             Game.world.player.x =      ELEVATOR_TRANSITION.party_data[1].x or 320

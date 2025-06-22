@@ -108,11 +108,9 @@ function ElevatorButtons:confirmModSwitch(floor, mod)
     if enter == 1 then
 
 
-        cutscene:after(function(cutscene) 
+        cutscene:after(function() 
             Game.world:startCutscene(function (cutscene)
-
-                
-                cutscene:wait(4)
+                cutscene:wait(self.elevator.floors[self.elevator.target_floor].length/60)
                 Game.world.timer:tween(3, self.elevator, {volcount = 0}, "linear")
                 cutscene:wait(cutscene:fadeOut(3))
                 
@@ -139,8 +137,7 @@ function ElevatorButtons:confirmModSwitch(floor, mod)
                 
                 cutscene:wait(1)
                 
-                cutscene:after(Game:swapIntoMod(mod, false, self.elevator.floors[floor].dest))
-
+                cutscene:after(Game:swapIntoMod(mod, false, Game.world.map.id))
             end)
         end)
 

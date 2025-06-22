@@ -88,6 +88,7 @@ function Elevator:postLoad()
     if Mod.lastMap == nil then return end
 
     for floor_number, floor in pairs(self.floors) do
+        print(floor.dest, Mod.lastMap)
         if floor.dest == Mod.lastMap then
             self:setCurrentFloor(floor_number)
             break
