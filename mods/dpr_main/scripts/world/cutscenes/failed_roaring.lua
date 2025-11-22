@@ -8,7 +8,7 @@ return function(cutscene)
 		local after = function() done = true end
 
 		Assets.playSound("rudebuster_swing")
-		Game.world:spawnObject(RudeBusterBeam(falsse, x, y, tx, ty, after), WORLD_LAYERS["above_bullets"])
+		Game.world:spawnObject(RudeBusterBeam(false, x, y, tx, ty, after), WORLD_LAYERS["above_bullets"])
 
 		cutscene:wait(function() return done end)
 	end
