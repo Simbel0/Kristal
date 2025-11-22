@@ -8,7 +8,7 @@ return function(cutscene)
 		local after = function() done = true end
 
 		Assets.playSound("rudebuster_swing")
-		Game.world:spawnObject(RudeBusterBeam(false, x, y, tx, ty, after), WORLD_LAYERS["above_bullets"])
+		Game.world:spawnObject(RudeBusterBeam(falsse, x, y, tx, ty, after), WORLD_LAYERS["above_bullets"])
 
 		cutscene:wait(function() return done end)
 	end
@@ -20,6 +20,10 @@ return function(cutscene)
 	local knight = Game.world:spawnNPC("roaring_knight", 330, 1595)
 	knight:setLayer(10)
 	knight:setAnimation("looking")
+	knight.no_glow = true
+	knight.no_shadow = true
+	knight:removeFX("highlight")
+	knight:removeFX("shadow")
 
 	local rem = 1
 	local function knightDodge()
@@ -455,8 +459,7 @@ return function(cutscene)
 	fountain_flash:fadeOutAndRemove(1)
 
 	cutscene:wait(1.5)
-
-	glow = RecolorFX(1, 1, 1, 1)
+	--[[glow = RecolorFX(1, 1, 1, 1)
 	for i, tile in ipairs(Game.world.map.events_by_layer["objects_tiles"]) do
 		tile:addFX(glow, "fountain_glow")
 	end
@@ -469,7 +472,8 @@ return function(cutscene)
 			return false
 		end
 		glow:setColor(r-DT, g-DT, b, a)
-	end)
+	end)]]
+	Game.world:getEvent(34).glowactive = true
 
 	kris:setLayer(0.5)
 	susie:setLayer(0.5)
@@ -530,6 +534,26 @@ return function(cutscene)
 		Game.world:addChild(fountain_parts[i+1])
 		fountain_parts[i+1]:play(2/30, true)
 	end
+	local y_pos = y
+	local fountain_mask = Sprite("world/events/titan_fountain_loop", 0, y_pos)
+	fountain_mask:setOrigin(0, 1)
+	fountain_mask:setScale(2,-4)
+	fountain_mask:setLayer(-0.1)
+	fountain_mask:setColor(COLORS.black)
+	--fountain_mask:setLayer(0.5)
+	--fountain_mask:setColor(COLORS.white)
+	fountain_mask.mask_shadow = true
+	Game.world:addChild(fountain_mask)
+	fountain_mask:play(2/30, true)
+	local fountain_mask_burst = Sprite("world/events/titan_fountain_loop_base", 128, 1639)
+	fountain_mask_burst:setScale(2)
+	fountain_mask_burst:setLayer(-0.1)
+	fountain_mask_burst:setColor(COLORS.black)
+	--fountain_mask_burst:setLayer(0.5)
+	--fountain_mask_burst:setColor(COLORS.white)
+	fountain_mask_burst.mask_shadow = true
+	Game.world:addChild(fountain_mask_burst)
+	fountain_mask_burst:play(4/30, true)
 
 --[[for (var i = 0; i < 4; i++)
     {
@@ -586,6 +610,11 @@ return function(cutscene)
 				return false
 			end
 		end
+		fountain_mask.anim_delay = fountain_mask.anim_delay + (0.001)*DTMULT
+		if fountain_mask.anim_delay >= (4/30) then
+			fountain_mask.anim_delay = (4/30)
+			return false
+		end
 	end)
 
 	cutscene:wait(2)
@@ -634,6 +663,7 @@ return function(cutscene)
 
 	cutscene:wait(0.5)
 
+	Game.world:getEvent(34):setLayer(0.29)
 	knight.visible = true
 	knight:setSprite("idle_overworld")
 	knight:setLayer(0.3)

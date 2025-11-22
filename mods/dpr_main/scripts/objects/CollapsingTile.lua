@@ -67,6 +67,8 @@ function CollapsingTile:update()
 			self.max_timer = love.math.random(30, 60)
 			self.timer = self.max_timer
 			self.con = 2
+			self.gravity = 1
+			Assets.stopSound("impact")
 			Assets.playSound("impact", 1, Utils.random(0.3, 0.8))
 			self.vspeed = Utils.pick{-1, -1, 0, 0, 0, 0, 0, 0, -2}
 
@@ -80,7 +82,7 @@ function CollapsingTile:update()
 		end
 	elseif self.con == 2 then
 		self.timer = self.timer - DTMULT
-
+		self.vspeed = self.vspeed - self.gravity * DTMULT
 		self.texture_y = self.texture_y + (1-self.vspeed)*DTMULT
 		self.alpha = Utils.clampMap(self.timer, 0, self.max_timer, 0, 1)
 		if self.timer <= 0 then

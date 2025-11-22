@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.0" name="pretitan_library" tilewidth="900" tileheight="900" tilecount="4" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="pretitan_library" tilewidth="900" tileheight="900" tilecount="7" columns="0">
  <editorsettings>
   <export target="pretitan_library.lua" format="lua"/>
  </editorsettings>
@@ -15,5 +15,14 @@
  </tile>
  <tile id="3">
   <image width="234" height="33" source="../../../assets/sprites/tilesets/bg_barrier_pretitan.png"/>
+ </tile>
+ <tile id="4">
+  <image width="219" height="128" source="../../../assets/sprites/tilesets/prophecy_shattered_ground_1.png"/>
+ </tile>
+ <tile id="5">
+  <image width="219" height="128" source="../../../assets/sprites/tilesets/prophecy_shattered_ground_2.png"/>
+ </tile>
+ <tile id="6">
+  <image width="219" height="128" source="../../../assets/sprites/tilesets/prophecy_shattered_ground_3.png"/>
  </tile>
 </tileset>

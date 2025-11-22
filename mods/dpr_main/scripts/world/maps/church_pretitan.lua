@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.0",
+  tiledversion = "1.10.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -9,8 +9,8 @@ return {
   height = 66,
   tilewidth = 40,
   tileheight = 40,
-  nextlayerid = 8,
-  nextobjectid = 22,
+  nextlayerid = 10,
+  nextobjectid = 35,
   properties = {
     ["music"] = "titan_pre"
   },
@@ -225,7 +225,7 @@ return {
       objects = {
         {
           id = 16,
-          name = "",
+          name = "bg_barrier_pretitan",
           type = "",
           shape = "rectangle",
           x = 90,
@@ -292,6 +292,19 @@ return {
           shape = "point",
           x = 320,
           y = 1270,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 34,
+          name = "roomglow",
+          type = "",
+          shape = "point",
+          x = 0,
+          y = 1800,
           width = 0,
           height = 0,
           rotation = 0,

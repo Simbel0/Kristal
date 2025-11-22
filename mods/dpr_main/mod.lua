@@ -99,6 +99,27 @@ function Mod:postInit(new_file)
     self:initializeImportantFlags(new_file)
 end
 
+function Mod:c4lCreateFilterFX(type, properties)
+    local fxtype = (type or "hsv"):lower()
+    if fxtype == "hsv" then
+        return HSVShiftFX()
+    elseif fxtype == "finalhsv" then
+		local hsv_fx = HSVShiftFX(true)
+		hsv_fx.hue_start = 290
+        hsv_fx.hue_target = 230
+        hsv_fx.val_start = 0.8
+        hsv_fx.val_target = 0.9
+		hsv_fx.heartbeat_mode = true
+		return hsv_fx
+    elseif fxtype == "prophecyscroll" then
+        return ProphecyScrollFX()
+    end
+end
+
+function Mod:updateLightBeams(alpha)
+
+end
+
 function Mod:initializeImportantFlags(new_file)
     self.pc_gifts_data = {
         UNDERTALE = {

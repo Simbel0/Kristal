@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.0",
+  tiledversion = "1.10.2",
   name = "pretitan_library",
   class = "",
   tilewidth = 900,
@@ -23,7 +23,7 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 4,
+  tilecount = 7,
   tiles = {
     {
       id = 0,
@@ -48,6 +48,24 @@ return {
       image = "../../../assets/sprites/tilesets/bg_barrier_pretitan.png",
       width = 234,
       height = 33
+    },
+    {
+      id = 4,
+      image = "../../../assets/sprites/tilesets/prophecy_shattered_ground_1.png",
+      width = 219,
+      height = 128
+    },
+    {
+      id = 5,
+      image = "../../../assets/sprites/tilesets/prophecy_shattered_ground_2.png",
+      width = 219,
+      height = 128
+    },
+    {
+      id = 6,
+      image = "../../../assets/sprites/tilesets/prophecy_shattered_ground_3.png",
+      width = 219,
+      height = 128
     }
   }
 }

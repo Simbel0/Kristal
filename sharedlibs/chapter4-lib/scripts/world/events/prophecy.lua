@@ -1,92 +1,90 @@
 ---@class Event.prophecy : Event
-local event, super = Class(Event, "prophecy")
+local Prophecy, super = Class(Event, "prophecy")
 
-function event:init(data)
+function Prophecy:init(data)
     super.init(self, data)
-    self.container = Object(self.width/2,0)
-    self:addChild(self.container)
     local properties = data and data.properties or {}
-    if properties.texture then
-        self:setSprite(properties.texture)
-    end
-    if properties.alwaysvisible then
-        self.afx = self:addFX(AlphaFX(0))
-    end
-    if properties.text then
-        self:setText(properties.text)
-    end
-    self.text_offset_x = properties.toff_x or 0
-    self.text_offset_y = properties.toff_y or 0
+
+	self.always_visible = properties["alwaysvisible"] or false
+	
+    self.container_offset_x       = properties["offx"] or 0                  -- x offset of the sprite
+    self.container_offset_y       = properties["offy"] or 0                  -- y offset of the sprite
+	
+    self.container = Object(self.container_offset_x,self.container_offset_y)
+    self:addChild(self.container)
+
+    self.texture               = properties["texture"] or "initial1"          -- the sprite to display (gets sprite from "world/events/prophecy/")
+    self.sprite_offset_x       = properties["spr_offx"] or 0                  -- x offset of the sprite
+    self.sprite_offset_y       = properties["spr_offy"] or 0                  -- y offset of the sprite
+
+    self.text                  = properties["text"]                           -- the text to display
+    self.text_offset_x         = properties["txt_offx"] or -160               -- x offset of the text
+    self.text_offset_y         = properties["txt_offy"] or -16                -- y offset of the text
+
+	local tex = Assets.getTexture("world/events/prophecy/"..self.texture or "") or nil
+	if tex then
+		self.panel_width       = properties["panel_w"] or 150
+		self.panel_height      = properties["panel_h"] or 90
+	else	
+		self.panel_width       = properties["panel_w"] or 150
+		self.panel_height      = properties["panel_h"] or 90
+	end
+	
+    self.can_break             = properties["can_break"]                      -- if true, then allows the player to break panel when interacted with
+    self.break_type            = properties["break_type"]                     -- if enabled, sets the delay time for when the panel should break apart to a specific interval
+    self.break_delay           = properties["break_delay"]                    -- if "break_type" is not defined, sets the delay time for when the panel should break apart
+
+	self.no_back               = properties["no_back"] or false
+
+	self.fade_edges            = properties["no_back"] or false
+
+    self.panel                 = ProphecyPanel(self.texture, self.text, self.panel_width, self.panel_height)
+    self.panel.sprite_offset_x = self.sprite_offset_x
+    self.panel.sprite_offset_y = self.sprite_offset_y
+    self.panel.text_offset_x   = self.text_offset_x
+    self.panel.text_offset_y   = self.text_offset_y
+	self.panel.no_back		   = self.no_back
+	self.panel.fade_edges	   = self.fade_edges
+
+    self.container:addChild(self.panel)
+
+    --self.afx = self.container:addFX(AlphaFX(0))
+
+    self.nodestroysound        = false
+    self.nodestroysecondsound  = false
+    self.nodestroysparkles     = false
+    self.destroy               = 0
+	self.roomglow = nil
+	self.panel_active = false
 end
 
-function event:getSortPosition()
-    return self.x,self.y
-end
-
-function event:setSprite(texture)
-    if self.sprite then self.sprite:remove() end
-    if not texture then return end
-    self.sprite = Sprite(texture)
-    self.sprite:setOrigin(0.5,1)
-    self.container:addChild(self.sprite)
-    self.sprite:setScale(2)
-    self.sprite:addFX(ProphecyScrollFX())
-    self.sprite:addFX(ProphecyEchoFX())
-end
-
-function event:setText(text)
-    if self.text then self.text:remove() end
-    if not text then return end
-    self.text = Text(nil, self.text_offset_x, -self.height, {auto_size = true})
-    self.text.font = "legend"
-    self.text.font_size = 32
-    self.text:setText(text)
-    self.text.align = "right"
-    self.text:setOrigin(0.5, 1)
-
-    self.text:addFX(ProphecyScrollFX())
-    self.container:addChild(self.text)
-end
-
-function event:getRealWidth()
+function Prophecy:getRealWidth()
     local width = 0
 
-    if self.sprite then
-        width = width + self.sprite:getScaledWidth()
-    end
-
-    if self.text then
-        local text_w, _ = self.text:getScaledSize()
-
-        width = width + text_w + self.text_offset_x
-    end
-
+    width = width + self.panel.width*2
     return width
 end
 
-function event:getRealHeight()
+function Prophecy:getRealHeight()
     local height = 0
 
-    if self.sprite then
-        height = height + self.sprite:getScaledHeight()
-    end
-
-    if self.text then
-        local _, text_h = self.text:getScaledSize()
-
-        height = height + text_h + self.text_offset_y
-    end
-
+    height = height + self.panel.height*2
     return height
 end
 
-function event:breakProphecy()
-    local sprites = Assets.getFrames("prophecy/prophecy_shatter")
+function Prophecy:getSortPosition()
+    return self.x,self.y
+end
+
+function Prophecy:breakProphecy(type, silent)
+	local destroytype = type or 0
+	local silent = silent or false
+    local sprites = Assets.getFrames("world/events/prophecy/prophecy_shatter")
     if #sprites == 0 then return end
 
     local delaytime = 30/30
 
-    local broken_container = Object(self.x-199, self.y-self:getRealHeight())
+    local broken_container = Object(self.x-self.panel_width, self.y-self.panel_height)
     broken_container:setScaleOrigin(0.5, 0.5)
     broken_container:setLayer(self:getLayer())
     self.parent:addChild(broken_container)
@@ -100,16 +98,33 @@ function event:breakProphecy()
         s:setScale(2)
         broken_container:addChild(s)
 
-        s.alpha = 0.8;
-        s:setPhysics({
-            speed = 2,
-            friction = 0.05,
-            direction = math.rad(Utils.random(360))
-        })
-        s:setGraphics({
-            fade_to = 0,
-            fade = 0.01
-        })
+		if destroytype == 3 then
+			s.alpha = 0.3;
+			s:setPhysics({
+				speed = 0,
+				friction = 0.5,
+				direction = math.rad(270)
+			})
+			delaytime = 5
+			broken_container.timer:after(((delaytime * MathUtils.random(5)) + 1)/30, function()
+				s:setPhysics({
+					speed = 2,
+					friction = 0,
+					gravity = 0.5 + MathUtils.random(0.1)
+				})
+			end)
+		else
+			s.alpha = 0.8;
+			s:setPhysics({
+				speed = 2,
+				friction = 0.05,
+				direction = math.rad(Utils.random(360))
+			})
+			s:setGraphics({
+				fade_to = 0,
+				fade = 0.01
+			})
+		end
     end
 
     broken_container:setScale(
@@ -120,31 +135,48 @@ function event:breakProphecy()
         broken_container:remove()
     end)
 
-    Assets.playSound("glassbreak", 0.4, 0.6)
-    Assets.playSound("sparkle_glock", 0.5, 0.8)
-    Assets.playSound("sparkle_glock", 0.5, 0.71)
-    Assets.playSound("punchmed", 0.95, 0.7)
-
+	if not silent then
+		broken_container.timer:after(2/30, function() Assets.playSound("glassbreak", 0.4, 0.6) end)
+		Assets.playSound("sparkle_glock", 0.5, 0.8)
+		Assets.playSound("sparkle_glock", 0.5, 0.71)
+		Assets.playSound("punchmed", 0.95, 0.7)
+	end
+	
     self:remove()
 end
 
-function event:update()
+function Prophecy:update()
     super.update(self)
-    self.container.y = Utils.wave(Kristal.getTime()*2, -10, 10)
-    if self.sprite and self.text then
-        self.text.y = -self.sprite:getScaledHeight() + self.text_offset_y
+
+    --self.container.y = Utils.wave(Kristal.getTime()*2, -10, 10)
+
+    if self.texture and self.text then
+        self.panel.text.y = -self.panel_height + self.panel.text_offset_y
     else
-        self.text.y = self.text_offset_y
+        self.panel.text.y = self.text_offset_y
     end
-    if self.afx then
-        Object.startCache()
-        if self:collidesWith(self.world.player) then
-            self.afx.alpha = Utils.approach(self.afx.alpha, 1, DT*4)
-        else
-            self.afx.alpha = Utils.approach(self.afx.alpha, 0, DT*2)
-        end
-        Object.endCache()
-    end
+
+    Object.startCache()
+	if self.always_visible then
+		self.panel_active = true
+		self.panel.panel_alpha = 1.2
+		Kristal.callEvent("updateLightBeams", (1 - (self.panel.panel_alpha / 1.2)))
+	else
+		if self:collidesWith(self.world.player) then
+			--self.afx.alpha = MathUtils.approach(self.afx.alpha, 1, DT*4)
+			self.panel_active = true
+			self.panel.panel_alpha = MathUtils.lerp(self.panel.panel_alpha, 1.2, DTMULT*0.1)
+			-- Needed by nth Sanctuary for Deltarune accuracy.
+			-- TODO: Incorporate into the library once church darkness is more fleshed out
+			Kristal.callEvent("updateLightBeams", (1 - (self.panel.panel_alpha / 1.2)))
+		else
+			--self.afx.alpha = MathUtils.approach(self.afx.alpha, 0, DT*2)
+			self.panel.panel_alpha = MathUtils.lerp(self.panel.panel_alpha, 0, DTMULT*0.2)
+			self.panel_active = false
+			Kristal.callEvent("updateLightBeams", (1 - (self.panel.panel_alpha / 1.2)))
+		end
+	end
+    Object.endCache()
 end
 
-return event
+return Prophecy

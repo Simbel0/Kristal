@@ -16,16 +16,17 @@ return {
         Game.world.camera.x = kris.x
         Game.world.camera.y = 960
 
-		local ralsei = cutscene:spawnNPC("ralsei", 215, 995)
-		cutscene:walkTo(ralsei, 480, ralsei.y, 1.2, "up")
+		local ralsei = cutscene:spawnNPC("ralsei", 335, 995)
+		ralsei:setSprite("walk_unhappy")
+		cutscene:walkTo(ralsei, 600, ralsei.y, 1.2, "up")
 
 		Game.world.timer:after(0.8, function()
-			cutscene:getEvent(23):breakProphecy()
+			cutscene:getEvent(53):breakProphecy()
 		end)
 
 		cutscene:wait(cutscene:walkTo(kris, kris.x, ralsei.y, 1.1, "right"))
 
-		cutscene:wait(cutscene:panTo(360, Game.world.camera.y, 0.5))
+		cutscene:wait(cutscene:panTo(480, Game.world.camera.y, 0.5))
 
 		cutscene:wait(1)
 
@@ -34,16 +35,20 @@ return {
 
 		cutscene:wait(0.5)
 
-		cutscene:walkTo(ralsei, 860, ralsei.y, 1, "up")
+		cutscene:walkTo(ralsei, 980, ralsei.y, 1, "up")
 		cutscene:text("* SUSIE,[wait:3] STOP!!!", "frighten", "ralsei")
 
 		Game.world.camera.keep_in_bounds = true
 		cutscene:wait(cutscene:attachCamera())
-		ralsei:remove()
+		ralsei:remove()		
+	    for _,glow in ipairs(Game.world.map:getEvents("roomglow")) do
+			glow.prophecy_glow = false
+			glow.glowactive = true
+		end
 	end,
 	breakprophecy = function(cutscene)
 		local prophecy
-		local maxdistance = math.huge
+		local maxdistance = 320
 		for i, event in ipairs(Game.world.stage:getObjects(Event)) do
 			if event.id == "prophecy" and event.parent then
 				local dist = Utils.dist(Game.world.player.x, Game.world.player.y, event.x, event.y)
@@ -55,7 +60,9 @@ return {
 			end
 		end
 
-		prophecy:breakProphecy()
+		if prophecy and not prophecy:isRemoved() then
+			prophecy:breakProphecy()
+		end
 	end,
 	final = function(cutscene)
 		local kris = cutscene:getCharacter("kris")
@@ -68,23 +75,56 @@ return {
 
 		cutscene:text("* SUSIE,[wait:3] BE CAREFUL!!", "frighten", "ralsei")
 
-		Game.world.stage:removeFX("_hsv")
-		Assets.playSound("glassbreak", 0.4, 0.6)
-    	Assets.playSound("sparkle_glock", 0.5, 0.8)
-    	Assets.playSound("sparkle_glock", 0.5, 0.71)
-    	Assets.playSound("punchmed", 0.95, 0.7)
+		--Game.world.stage:removeFX("_hsv")
+		
+		cutscene:wait(2/30)
+    	local distort = RadialDistort(SCREEN_WIDTH, SCREEN_HEIGHT/2, 1)
+    	Game.world:addChild(distort)
+		Game.world:getEvent(44):remove()
+		Game.world.map:getTileLayer("floorglow"):getFX("prop").opacity = 1 - 0.3
+		Game.world:getEvent(62):getFX("prop").opacity = 0.5 - 0.3
+		Game.world:getEvent(63):getFX("prop").opacity = 0.5 - 0.3
+	    for _,prophecy in ipairs(Game.world.map:getEvents("prophecy")) do
+			if prophecy.panel.hsv then
+				prophecy.panel.hsv = false
+			end
+		end
+		Game.world:getEvent(65):breakProphecy(3)
+		Game.world:getEvent(66):breakProphecy(3, true)
+		Game.world:getEvent(67):breakProphecy(3, true)
 
     	cutscene:wait(0.5)
 
-    	local susie = cutscene:spawnNPC("susie", 3800, ralsei.y)
-    	local knight = cutscene:spawnNPC("roaring_knight", 4200, susie.y)
+    	local susie = cutscene:spawnNPC("susie", 3920, ralsei.y)
+    	local knight = cutscene:spawnNPC("roaring_knight", 4320, susie.y)
     	susie:setSprite("battle/attackready_1")
     	knight:setAnimation({"droop", 1/2, true})
-
-    	cutscene:wait(cutscene:panTo(4000, ralsei.y, 1.5))
-
+		
+	    for _,glow in ipairs(Game.world.map:getEvents("roomglow")) do
+			glow.prophecy_glow = false
+			glow.lerpstrength = 0.0625
+			glow.glowactive = false
+		end
+		dark = RecolorFX(1, 1, 1, 1)
+		kris:addFX(dark, "ending_darken")
+		susie:addFX(dark, "ending_darken")
+		ralsei:addFX(dark, "ending_darken")
+		Game.world.map:getTileLayer("floorglow"):addFX(dark, "ending_darken")
+		Game.world.map:getTileLayer("tiles"):addFX(dark, "ending_darken")
+		Game.world.map:getTileLayer("tiles_mid"):addFX(dark, "ending_darken")
+		for i, tile in ipairs(Game.world.map.events_by_layer["objects_glass"]) do
+			tile:addFX(dark, "ending_darken")
+		end
+		local actind = -0.05
+		local tint = ColorUtils.hexToRGB("#808080FF")
+		cutscene:during(function()
+			actind = MathUtils.lerp(actind, 1.05, 0.0625 * DTMULT)
+			dark:setColor(ColorUtils.mergeColor({1,1,1}, {tint[1],tint[2],tint[3]}, actind))
+		end)
+    	cutscene:wait(cutscene:panTo(4120, ralsei.y, 1.5))
+		
     	cutscene:wait(0.5)
-
+		
     	cutscene:text("* Looks like it's the end of the way.", "exhausted_a", "susie")
     	cutscene:text("* You may have beat us once,[wait:3] but you're done now!!", "daring_a", "susie")
     	cutscene:text("* I don't know what you were planning but it clearly failed.", "exhausted_b", "susie")
