@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="tvland_objects" tilewidth="195" tileheight="160" tilecount="30" columns="0">
+<tileset version="1.10" tiledversion="1.10.0" name="tvland_objects" tilewidth="195" tileheight="160" tilecount="36" columns="0">
  <editorsettings>
   <export target="floortv_objects.lua" format="lua"/>
  </editorsettings>
@@ -93,5 +93,23 @@
  </tile>
  <tile id="32">
   <image width="38" height="97" source="../../../assets/sprites/world/maps/tvland/hall_of_fame/hall_of_fame_door.png"/>
+ </tile>
+ <tile id="33">
+  <image width="46" height="73" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_a.png"/>
+ </tile>
+ <tile id="34">
+  <image width="46" height="73" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_a_locked.png"/>
+ </tile>
+ <tile id="35">
+  <image width="44" height="64" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_b.png"/>
+ </tile>
+ <tile id="36">
+  <image width="44" height="64" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_b_locked.png"/>
+ </tile>
+ <tile id="37">
+  <image width="40" height="55" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_c.png"/>
+ </tile>
+ <tile id="38">
+  <image width="40" height="55" source="../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_c_locked.png"/>
  </tile>
 </tileset>

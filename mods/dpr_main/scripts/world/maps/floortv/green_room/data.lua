@@ -314,39 +314,8 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
-      id = 11,
-      name = "objects_base",
-      class = "",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 106,
-          name = "interactable",
-          type = "",
-          shape = "rectangle",
-          x = 550,
-          y = 120,
-          width = 390,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["text"] = "* (Doesn't seem like anyone's here...)"
-          }
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
       id = 5,
-      name = "objects_party",
+      name = "objects",
       class = "",
       visible = true,
       opacity = 1,
@@ -505,8 +474,8 @@ return {
           name = "interactable",
           type = "",
           shape = "rectangle",
-          x = 1000,
-          y = 80,
+          x = 1001,
+          y = 120,
           width = 76,
           height = 40,
           rotation = 0,
@@ -517,17 +486,33 @@ return {
         },
         {
           id = 83,
-          name = "interactable",
+          name = "transition",
           type = "",
           shape = "rectangle",
           x = 1120,
-          y = 120,
+          y = 122,
           width = 90,
           height = 40,
           rotation = 0,
           visible = true,
           properties = {
-            ["text"] = "* (It's the cooler door.)[wait:5]\n* (It's currently locked.)"
+            ["map"] = "floortv/rankroom_hub",
+            ["marker"] = "entry_d"
+          }
+        },
+        {
+          id = 84,
+          name = "interactable",
+          type = "",
+          shape = "rectangle",
+          x = 550,
+          y = 120,
+          width = 390,
+          height = 40,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["text"] = "* (Doesn't seem like anyone's here...)"
           }
         },
         {
@@ -698,7 +683,7 @@ return {
       properties = {},
       encoding = "lua",
       data = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -716,9 +701,9 @@ return {
       type = "objectgroup",
       draworder = "topdown",
       id = 7,
-      name = "base_collision",
+      name = "collision",
       class = "",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -926,87 +911,6 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
-      id = 9,
-      name = "ramb_collision",
-      class = "",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 97,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 574,
-          y = 72,
-          width = 120,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 98,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 784,
-          y = 72,
-          width = 120,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 99,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 560,
-          y = 142,
-          width = 360,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 100,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 592,
-          y = 90,
-          width = 40,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 101,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 904,
-          y = 90,
-          width = 40,
-          height = 40,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
       id = 8,
       name = "markers",
       class = "",
@@ -1045,25 +949,12 @@ return {
           properties = {}
         },
         {
-          id = 96,
-          name = "entry_dump",
+          id = 94,
+          name = "entry_rank",
           type = "",
           shape = "point",
-          x = 1040,
-          y = 200,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 108,
-          name = "entry_ramb",
-          type = "",
-          shape = "point",
-          x = 739,
-          y = 138,
+          x = 1164.67,
+          y = 199.667,
           width = 0,
           height = 0,
           rotation = 0,

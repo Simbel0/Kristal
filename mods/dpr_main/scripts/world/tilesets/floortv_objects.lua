@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.2",
+  tiledversion = "1.10.0",
   name = "tvland_objects",
   class = "",
   tilewidth = 195,
@@ -23,7 +23,7 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 30,
+  tilecount = 36,
   tiles = {
     {
       id = 0,
@@ -204,6 +204,42 @@ return {
       image = "../../../assets/sprites/world/maps/tvland/hall_of_fame/hall_of_fame_door.png",
       width = 38,
       height = 97
+    },
+    {
+      id = 33,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_a.png",
+      width = 46,
+      height = 73
+    },
+    {
+      id = 34,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_a_locked.png",
+      width = 46,
+      height = 73
+    },
+    {
+      id = 35,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_b.png",
+      width = 44,
+      height = 64
+    },
+    {
+      id = 36,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_b_locked.png",
+      width = 44,
+      height = 64
+    },
+    {
+      id = 37,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_c.png",
+      width = 40,
+      height = 55
+    },
+    {
+      id = 38,
+      image = "../../../assets/sprites/world/maps/tvland/green_room_door_ranking/door_c_locked.png",
+      width = 40,
+      height = 55
     }
   }
 }

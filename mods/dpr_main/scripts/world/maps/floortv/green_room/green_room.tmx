@@ -58,14 +58,7 @@
   <object id="78" gid="389" x="1120" y="160" width="92" height="146"/>
   <object id="80" gid="390" x="1001" y="160" width="76" height="104"/>
  </objectgroup>
- <objectgroup color="#ff007f" id="11" name="objects_base">
-  <object id="106" name="interactable" x="550" y="120" width="390" height="40">
-   <properties>
-    <property name="text" value="* (Doesn't seem like anyone's here...)"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup color="#ff00ff" id="5" name="objects_party">
+ <objectgroup color="#ff00ff" id="5" name="objects">
   <object id="7" gid="371" x="520" y="440" width="116" height="102"/>
   <object id="8" gid="371" x="804" y="440" width="116" height="102"/>
   <object id="9" gid="377" x="640" y="440" width="160" height="40"/>
@@ -87,16 +80,21 @@
    </properties>
   </object>
   <object id="77" name="greenroom_platter" x="670" y="368" width="100" height="88"/>
-  <object id="81" name="interactable" x="1000" y="80" width="76" height="40">
+  <object id="81" name="interactable" x="1001" y="120" width="76" height="40">
    <properties>
     <property name="text">* (It's a door.)[wait:5]
 * (It's locked.)</property>
    </properties>
   </object>
-  <object id="83" name="interactable" x="1120" y="120" width="90" height="40">
+  <object id="83" name="transition" x="1120" y="122" width="90" height="40">
    <properties>
-    <property name="text">* (It's the cooler door.)[wait:5]
-* (It's currently locked.)</property>
+    <property name="map" value="floortv/rankroom_hub"/>
+    <property name="marker" value="entry_d"/>
+   </properties>
+  </object>
+  <object id="84" name="interactable" x="550" y="120" width="390" height="40">
+   <properties>
+    <property name="text" value="* (Doesn't seem like anyone's here...)"/>
    </properties>
   </object>
   <object id="89" name="transition" x="120" y="160">
@@ -153,7 +151,7 @@
  </objectgroup>
  <layer id="6" name="above" width="36" height="12">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,36,36,36,36,36,36,36,36,36,36,36,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -167,7 +165,7 @@
 0,0,0,0,0,0,36,36,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,36,36,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup color="#0000ff" id="7" name="base_collision">
+ <objectgroup color="#0000ff" id="7" name="collision" visible="0">
   <object id="40" x="40" y="240" width="240" height="40"/>
   <object id="41" x="240" y="280" width="40" height="160"/>
   <object id="42" x="280" y="440" width="880" height="40"/>
@@ -184,13 +182,6 @@
   <object id="68" x="800" y="400" width="120" height="40"/>
   <object id="85" x="401" y="160" width="60" height="9"/>
  </objectgroup>
- <objectgroup color="#5500ff" id="9" name="ramb_collision">
-  <object id="97" x="574" y="72" width="120" height="40"/>
-  <object id="98" x="784" y="72" width="120" height="40"/>
-  <object id="99" x="560" y="142" width="360" height="40"/>
-  <object id="100" x="592" y="90" width="40" height="40"/>
-  <object id="101" x="904" y="90" width="40" height="40"/>
- </objectgroup>
  <objectgroup color="#7f00ff" id="8" name="markers">
   <object id="86" name="entry_left" x="140" y="200">
    <point/>
@@ -198,10 +189,7 @@
   <object id="92" name="entry_right" x="1260" y="200">
    <point/>
   </object>
-  <object id="96" name="entry_dump" x="1040" y="200">
-   <point/>
-  </object>
-  <object id="108" name="entry_ramb" x="739" y="138">
+  <object id="94" name="entry_rank" x="1164.67" y="199.667">
    <point/>
   </object>
  </objectgroup>
