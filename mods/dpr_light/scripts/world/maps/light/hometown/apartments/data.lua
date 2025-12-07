@@ -1,7 +1,7 @@
 return {
-  version = "1.11",
+  version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.11.2",
+  tiledversion = "1.10.0",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 7,
-  nextobjectid = 13,
+  nextobjectid = 14,
   properties = {
     ["border"] = "leaves",
     ["light"] = true,
@@ -214,6 +214,28 @@ return {
           properties = {
             ["solid"] = true,
             ["text"] = "* (It's a saucer of milk.)"
+          }
+        },
+        {
+          id = 13,
+          name = "NPC",
+          type = "",
+          shape = "point",
+          x = 280,
+          y = 200,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["actor"] = "colorguy",
+            ["talk"] = true,
+            ["talksprite"] = "talk",
+            ["text1_1"] = "* Look at those FLOWERS![wait:5] Aren't they so colorful and full of life?",
+            ["text1_2"] = "* Who would dare put them in trash cans??",
+            ["text2_1"] = "* My friends say I care too much about colors...",
+            ["text2_2"] = "* Well it's their PROBLEM if they want to be monochrome!",
+            ["text3_1"] = "* Keep your colors, kid.[wait:5]\n* You never know when you'll lose them."
           }
         }
       }
