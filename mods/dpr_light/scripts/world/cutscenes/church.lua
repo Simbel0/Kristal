@@ -136,7 +136,7 @@ return {
 
         local tourist = false
         for i,member in ipairs(Game.party) do
-            if not Utils.containsValue(not_tourists, member.id) then
+            if not TableUtils.contains(not_tourists, member.id) then
                 tourist = true
                 break
             end
@@ -144,17 +144,17 @@ return {
 
         local human_tourist = false
         for i,member in ipairs(Game.party) do
-            if Utils.containsValue(human_tourists, member.id) then
+            if TableUtils.contains(human_tourists, member.id) then
                 human_tourist = member.id
                 break
             end
         end
 
-        local susie_in_party = #Utils.filter(Game.party, function(value) return value.id == "susie" end) == 1
+        local susie_in_party = #TableUtils.filter(Game.party, function(value) return value.id == "susie" end) == 1
 
         local alvin_recognizes
         for i,member in ipairs(Game.party) do
-            if (susie_in_party and member.id == "susie") or Utils.containsValue(not_tourists, member.id) then
+            if (susie_in_party and member.id == "susie") or TableUtils.contains(not_tourists, member.id) then
                 alvin_recognizes = member
                 break
             end
