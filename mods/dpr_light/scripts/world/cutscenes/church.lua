@@ -23,9 +23,14 @@ return {
     end,
 
     fire_extinguisher = function(cutscene, event, player)
-        if cutscene:getCharacter("susie_lw") then
-            cutscene:text("* (It's a fire extinguisher.)[wait:10]\n* (For some reason you have the\nfeeling...)")
-            cutscene:text("* (...[wait:5] Susie will say something\nstupid about it.)[react:1]", nil, nil, {reactions={{"They should make one of these\nthat shoots whip cream", "mid", "bottom", "smile", "susie"}}})
+        if cutscene:getCharacter("susie") then
+            if GeneralUtils.getLeader().id == "kris" then
+                cutscene:text("* (It's a fire extinguisher.)[wait:10]\n* (For some reason you have the\nfeeling...)")
+                cutscene:text("* (...[wait:5] Susie will say something\nstupid about it.)[react:1]", nil, nil, {reactions={{"They should make one of these\nthat shoots whip cream", "mid", "bottom", "smile", "susie"}}})
+            else
+                cutscene:text("* (It's a fire extinguisher.)")
+                cutscene:text("* They should make one of these that shoots whip cream", "smile", "susie")
+            end
         else
             cutscene:text("* (It's a fire extinguisher.)")
         end
@@ -179,14 +184,14 @@ return {
         local c = cutscene:choicer({"Shelter", "Susie", "Gerson", "Goodbye"})
         if c == 1 then
             if tourist then
-                cutscene:text("* ...Ah yes,[wait:5] the shelter to the south of the church.")
+                cutscene:text("* [speed:0.3]...[speed:1][wait:5]Ah yes,[wait:5] the shelter to the south of the church.")
                 cutscene:text("* Truly,[wait:5] it is no place for a tourist to go to.")
                 cutscene:text("* I believe no one has maintained it in a while.[wait:5] It would be dangerous to go there.")
                 cutscene:text("* Hometown has many other interesting places to visit.")
                 cutscene:text("* I would suggest going there instead.")
                 cutscene:text("* I'm honestly quite surprised you've even learn about it in the first place.")
                 cutscene:text("* If something heavy weights on your shoulder,[wait:5] young one...")
-                cutscene:text("* Please,[wait:5] do not hesitate to come here and pray to the Angel.")
+                cutscene:text("* Please,[wait:5] do not hesitate to come here and pray.")
                 cutscene:text("* The light of the Angel guides everyone,[wait:5] regardless of their belief or origin.")
             else
                 cutscene:text("* ...?[wait:5] First Kris,[wait:5] now you "..alvin_recognizes:getName().."...")
@@ -205,23 +210,27 @@ return {
             if susie_in_party then
                 if GeneralUtils.getLeader().id == "susie" then
                     cutscene:text("* Susie?[wait:5] Why would you ask me about yourself?[wait:5] Ha ha.")
-                    cutscene:text("* In any case,[wait:5] I would like to thank you for helping me cleaning up the church on that day.")
-                    cutscene:text("* I don't know yet what happened but I don't think I would have cleaned up everything without your help.")
-                    cutscene:text("* No problem.[wait:5] It's...[wait:5] It was the least I could do.")
-                    cutscene:text("* You are a kind soul Susie.[wait:5] I am sure the Angel has great plans for you.")
-                    cutscene:text("* And if you ever want to come back to a service, know you'll be welcomed.")
-                    cutscene:text("* Even if you'll only be here for our \"sick juice\".")
-                    cutscene:text("* Thanks,[wait:5] I appreciate it.")
                 else
                     cutscene:text("* Your friend Susie?")
-                    if GeneralUtils.getLeader().id == "dess" then
-                        cutscene:text("* We're not friends.")
+                    if GeneralUtils.getLeader().id == "dess" and Game:hasPartyMember("susie") then
+                        cutscene:text("* We're not friends.", "suspicious", "susie")
                         cutscene:text("* We're besties.[react:1]", "teehee", "dess", {reactions={
                             {"Like hell\nwe are!", "right", "bottom", "susie", "teeth"}
                         }})
                         cutscene:text("* Right...")
+                    else
+                        cutscene:text("* Well I'm not too sure what I could tell you about her...")
+                        cutscene:text("* that you probably don't already know yourself.")
                     end
                 end
+                cutscene:text("* In any case,[wait:5] I would like to thank you for helping me cleaning up the church.")
+                cutscene:text("* I don't know what happened yet that night...")
+                cutscene:text("* but I don't think I would have cleaned up everything without your help.")
+                cutscene:text("* No problem.[wait:5] It's...[wait:5] It was the least I could do.", "sincere", "susie")
+                cutscene:text("* You are a kind soul Susie.[wait:5] I am sure the Angel has great plans for you.")
+                cutscene:text("* And if you ever want to come back to a service, know you'll be welcomed.")
+                cutscene:text("* Even if you'll only be here for our \"sick juice\".")
+                cutscene:text("* Thanks,[wait:5] that's cool.", "smile", "susie")
             else
                 cutscene:text("* Susie?[wait:5] She is one of the new kids living here at Hometown.")
                 cutscene:text("* I've heard of few things about her...")
@@ -232,7 +241,7 @@ return {
             if tourist then
                 cutscene:text("* Ah so you've heard about my father...")
                 cutscene:text("* That makes sense.[wait:5] I believe his books are famous world-wide.")
-                cutscene:text("* Unfortunately,[wait:5] he passed away a few years ago.[wait:5] A geat loss to this world.")
+                cutscene:text("* Unfortunately,[wait:5] he passed away a few years ago.[wait:5] A great loss to this world.")
                 cutscene:text("* He was a great man.[wait:5] Always being a mentor to anyone who needed one.")
                 cutscene:text("* ...")
                 cutscene:text("* My father was always a source of inspiration and always the one to go to for advices.")
@@ -256,8 +265,13 @@ return {
                         cutscene:text("* I can only hope it will be an inspiring read.")
                         local success, text = Game.inventory:tryGiveItem("light/lord_of_the_hammer")
                         if success then
-                            cutscene:text(text)
+                            cutscene:text(text, {talk=false})
                             Game:setFlag("alvinAtGraveyard", true)
+                            local party = {}
+                            for i,member in ipairs(Game.party) do
+                                table.insert(party, member.id)
+                            end
+                            Game:setFlag("alvinRemembersParty", party)
                             alvin:setSprite("alvin_back")
                             return
                         else
@@ -279,6 +293,11 @@ return {
                 cutscene:text("* You can consider this my own advice.")
             end
             Game:setFlag("alvinAtGraveyard", true)
+            local party = {}
+            for i,member in ipairs(Game.party) do
+                table.insert(party, member.id)
+            end
+            Game:setFlag("alvinRemembersParty", party)
         else
             cutscene:text("* May the Angel guides your way.")
         end
