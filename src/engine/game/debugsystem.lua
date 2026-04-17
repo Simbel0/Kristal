@@ -1423,6 +1423,7 @@ end
 function DebugSystem:openMenu()
     Assets.playSound("ui_select")
     self:setState("MENU")
+    self.heart:setColor(Kristal.getSoulColor())
 
     if (self.current_menu ~= nil) then
         self:enterMenu(self.current_menu, nil, true)
