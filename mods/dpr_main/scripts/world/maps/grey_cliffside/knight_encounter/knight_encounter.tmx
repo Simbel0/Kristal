@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="38" height="33" tilewidth="40" tileheight="40" infinite="0" nextlayerid="6" nextobjectid="5">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="38" height="33" tilewidth="40" tileheight="40" infinite="0" nextlayerid="6" nextobjectid="8">
  <editorsettings>
   <export target="data.lua" format="lua"/>
  </editorsettings>
@@ -7,7 +7,7 @@
   <property name="music" value="demonic_little_grey_cliffs"/>
  </properties>
  <tileset firstgid="1" source="../../../tilesets/cliffs.tsx"/>
- <objectgroup id="5" name="objects_bg">
+ <objectgroup id="5" name="objects_bg" tintcolor="#ff00ff">
   <object id="3" name="glitch_bg" x="1360" y="840" width="40" height="40"/>
   <object id="4" name="footstep" x="1440" y="840" width="40" height="40"/>
  </objectgroup>
@@ -48,7 +48,7 @@
 50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50
 </data>
  </layer>
- <layer id="4" name="Tile Layer 2" width="38" height="33" opacity="0" offsetx="0" offsety="13">
+ <layer id="4" name="Tile Layer 2" width="38" height="33" offsetx="0" offsety="13">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -73,10 +73,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,19,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,28,30,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,37,39,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,46,48,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,19,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,28,30,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,37,39,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,46,48,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -85,7 +85,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="objects">
+ <objectgroup id="3" name="objects" tintcolor="#ff00ff">
   <object id="2" name="transition" x="1520" y="1080" width="40" height="120">
    <properties>
     <property name="map" value="grey_cliffside/first_chr_encounter"/>
@@ -93,8 +93,11 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="2" name="markers">
+ <objectgroup id="2" name="markers" tintcolor="#aa00ff">
   <object id="1" name="entry_r" x="1482" y="1139">
+   <point/>
+  </object>
+  <object id="5" name="hide_knight" x="400" y="1140">
    <point/>
   </object>
  </objectgroup>
