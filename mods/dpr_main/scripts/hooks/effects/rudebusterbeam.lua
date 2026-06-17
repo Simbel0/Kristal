@@ -4,7 +4,7 @@ local RudeBusterBeam, super = HookSystem.hookScript(RudeBusterBeam)
 
 function RudeBusterBeam:init(red, x, y, tx, ty, after)
     super.init(self, red, x, y, tx, ty, after)
-    self.jackenstein = Game.battle.encounter.is_jackenstein or false
+    self.jackenstein = Game.battle and Game.battle.encounter.is_jackenstein or false
 	self.misswritercreated = false
 	if self.jackenstein then
 		self.physics.friction = -5
