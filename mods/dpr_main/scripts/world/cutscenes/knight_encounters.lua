@@ -53,9 +53,10 @@ return {
 		Game.world.music:fade(0, 2)
 		cutscene:wait(cutscene:fadeOut(2))
 		party_walking = false
-		cutscene:text("* (As Susie starts retelling her story, you close your eyes and focus on the past...)")
+		cutscene:text("* (As Susie starts retelling her story,[wait:5] you close your eyes and focus on the past...)")
 
 		cutscene:text("EVERYONE GET IN THE FLASHBACK WE'RE LEAVING THIS CLIFFSIDE NOW WHAT THE IMPOSSIBLE THIS ISN'T THE FLASHBACK NOOOO NOOOO CUTSCENE SKIPPIIIIIIIIIIING")
+		cutscene:wait(1)
 
 		--cutscene:wait(cutscene:fadeIn(4))
 
@@ -104,7 +105,7 @@ return {
 			table.insert(fountains_past, fountain)
 		end
 
-		cutscene:text("* And after that, we chased the Knight everywhere it went.", nil, susie)
+		cutscene:text("* And after that,[wait:5] we chased the Knight everywhere it went.", nil, susie)
 		local fountain_handler = Game.world.timer:everyInstant(0.8, createFountain)
 		cutscene:during(function()
 			if #fountains_past == 0 then return false end
@@ -116,8 +117,8 @@ return {
 				end
 			end
 		end)
-		cutscene:text("* It started creating fountains left and right, sometimes multiple in a few hours...", nil, susie)
-		cutscene:text("* We kept up as much as we could. After all, we were the heroes, y'know?", nil, susie)
+		cutscene:text("* It started creating fountains left and right,[wait:5] sometimes multiple in a few hours...", nil, susie)
+		cutscene:text("* We kept up as much as we could.[wait:5] After all,[wait:5] we were the heroes, y'know?", nil, susie)
 		cutscene:text("* Who could stand against the Knight if not Kris and I?", nil, susie)
 		Game.world.timer:cancel(fountain_handler)
 		kris_past:setSprite("party/kris/dark/walk/right_1")
@@ -145,13 +146,13 @@ return {
 
 		cutscene:text("* I barely remember anything after that.", nil, susie)
 		cutscene:text("* But it feels like I kept thinking...", nil, susie)
-		cutscene:text("* I thought about many things, like how we failed.", nil, susie)
+		cutscene:text("* I thought about many things,[wait:5] like how we failed.", nil, susie)
 		cutscene:text("* How Ralsei is still trapped in the hands of the Knight.", nil, susie)
 		cutscene:text("* How Noelle and Berdly are probably in this mess too now.", nil, susie)
 		cutscene:text("* How I failed him...", nil, susie)
-		cutscene:text("* But most of all, I kept wondering...", nil, susie)
+		cutscene:text("* But most of all,[wait:5] I kept wondering...", nil, susie)
 		cutscene:wait(1.5)
-		cutscene:text("* [speed:0.9]Was Kris ever my friend?", nil, susie)
+		cutscene:text("* [speed:0.8]Was Kris ever my friend?", nil, susie)
 
 		local marker_x, marker_y = cutscene:getMarker("hide_knight")
 		susie:setPosition(marker_x, susie.y)
@@ -164,8 +165,8 @@ return {
 		cutscene:fadeIn(0)
 		local _, w = cutscene:alert(susie)
 		cutscene:wait(w)
-		cutscene:text("* Hero! Hide!")
-		cutscene:text("* What...?")
+		cutscene:text("* Hero![wait:5] Hide!", "intense_angry", susie)
+		cutscene:text("* What...?", "shocked", hero)
 
 		cutscene:look(hero, "up")
 		cutscene:wait(0.2)
