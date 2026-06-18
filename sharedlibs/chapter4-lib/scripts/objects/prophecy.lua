@@ -123,15 +123,24 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
     if #sprites == 0 then return end
 
     local delaytime = 30
-	if type == 2 then
+	if destroytype == 2 then
 		delaytime = 10
 	end
-	if type == 3 then
+	if destroytype == 3 then
 		delaytime = 5
 	end
 	if self.break_delay then
 		delaytime = self.break_delay
 	end
+
+	local broken_container = Object(self.x-self.panel_width, self.y-self.panel_height)
+    broken_container:setScaleOrigin(0.5, 0.5)
+    broken_container:setLayer(self:getLayer())
+	broken_container.draw_children_below = 0
+    self.parent:addChild(broken_container)
+
+    broken_container.timer = Timer()
+    broken_container:addChild(broken_container.timer)
 
 	self.world.timer:after(delaytime/30, function()
 		if sparkles then
@@ -139,7 +148,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 				local groundshard = ProphecyGroundShard((self.x - 199) + ((i * 398) / 30) + MathUtils.random(-30, 30), self.y + MathUtils.random(120))
 				groundshard.layer = self.layer
 				groundshard.ytarg = self.y + SCREEN_HEIGHT/2
-				if type == 3 then
+				if destroytype == 3 then
 					groundshard.ytarg = groundshard.ytarg + 10000
 					self.world.timer:after(280/30, function()
 						groundshard:remove()
@@ -148,7 +157,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 				Game.world:addChild(groundshard)
 			end
 		end
-		if type < 2 then
+		if destroytype < 2 then
 			broken_container.timer:after(120/30, function()
 				broken_container:remove()
 			end)
@@ -156,7 +165,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 		end
 	end)
 	if not silent then
-		if type ~= 3 then
+		if destroytype ~= 3 then
 			Assets.playSound("break1", 1, 0.95)
 		end
 		if not second_silent then
@@ -166,15 +175,6 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			broken_container.timer:after(delaytime/30, function() Assets.playSound("punchmed", 0.95, 0.7) end)
 		end
 	end
-	
-    local broken_container = Object(self.x-self.panel_width, self.y-self.panel_height)
-    broken_container:setScaleOrigin(0.5, 0.5)
-    broken_container:setLayer(self:getLayer())
-	broken_container.draw_children_below = 0
-    self.parent:addChild(broken_container)
-
-    broken_container.timer = Timer()
-    broken_container:addChild(broken_container.timer)
 
     local timer = broken_container.timer
     for i, texture in ipairs(sprites) do

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="181" height="30" tilewidth="40" tileheight="40" infinite="0" nextlayerid="8" nextobjectid="32">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="181" height="30" tilewidth="40" tileheight="40" infinite="0" nextlayerid="8" nextobjectid="32">
  <editorsettings>
   <export target="data.lua" format="lua"/>
  </editorsettings>
@@ -140,6 +140,8 @@
   </object>
   <object id="23" name="prophecy" x="480" y="940">
    <properties>
+    <property name="alwaysvisible" type="bool" value="true"/>
+    <property name="break_delay" type="int" value="0"/>
     <property name="text">THE LAST PROPHECY.
 THE STORY'S END.</property>
     <property name="texture" value="prophecy/prophecy_final_icon"/>
@@ -148,6 +150,8 @@ THE STORY'S END.</property>
   </object>
   <object id="24" name="prophecy" x="1720" y="780">
    <properties>
+    <property name="alwaysvisible" type="bool" value="true"/>
+    <property name="break_delay" type="int" value="0"/>
     <property name="text">AND THEN. WHEN ALL HOPE
 IS LOST FOR THE TALE</property>
     <property name="texture" value="prophecy/spr_dw_church_prophecy_end1_icon_0"/>
@@ -162,6 +166,8 @@ IS LOST FOR THE TALE</property>
   </object>
   <object id="26" name="prophecy" x="2560" y="580">
    <properties>
+    <property name="alwaysvisible" type="bool" value="true"/>
+    <property name="break_delay" type="int" value="0"/>
     <property name="text" value="THE FINAL TRAGEDY UNVEILS."/>
     <property name="texture" value="prophecy/spr_dw_church_prophecy_end1_icon_0"/>
    </properties>
@@ -169,6 +175,8 @@ IS LOST FOR THE TALE</property>
   </object>
   <object id="27" name="prophecy" x="3280" y="420">
    <properties>
+    <property name="alwaysvisible" type="bool" value="true"/>
+    <property name="break_delay" type="int" value="0"/>
     <property name="text">TO SAVE THE WORLDS,
 THERE IS ONLY ONE WAY.</property>
     <property name="texture" value="prophecy/prophecy_final_icon"/>

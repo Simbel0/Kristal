@@ -45,8 +45,8 @@ return {
 		local prophecy
 		local maxdistance = math.huge
 		for i, event in ipairs(Game.world.stage:getObjects(Event)) do
-			if event.id == "prophecy" and event.parent then
-				local dist = Utils.dist(Game.world.player.x, Game.world.player.y, event.x, event.y)
+			if (event.id and event.id:lower() == "prophecy") and event.parent --[[???]] then
+				local dist = MathUtils.dist(Game.world.player.x, Game.world.player.y, event.x, event.y)
 				print(i, dist, maxdistance)
 				if dist < maxdistance then
 					prophecy = event

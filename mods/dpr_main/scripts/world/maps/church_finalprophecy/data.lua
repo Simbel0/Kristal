@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.10.0",
+  tiledversion = "1.12.1",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -23,8 +23,7 @@ return {
     {
       name = "bg_dw_church_c_tileset",
       firstgid = 261,
-      filename = "../../tilesets/bg_dw_church_c_tileset.tsx",
-      exportfilename = "../../tilesets/bg_dw_church_c_tileset.lua"
+      filename = "../../tilesets/bg_dw_church_c_tileset.tsx"
     }
   },
   layers = {
@@ -202,6 +201,7 @@ return {
           width = 40,
           height = 200,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -215,6 +215,7 @@ return {
           width = 40,
           height = 280,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -228,6 +229,7 @@ return {
           width = 640,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -241,6 +243,7 @@ return {
           width = 600,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -254,6 +257,7 @@ return {
           width = 40,
           height = 160,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -267,6 +271,7 @@ return {
           width = 40,
           height = 160,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -280,6 +285,7 @@ return {
           width = 1320,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -293,6 +299,7 @@ return {
           width = 1320,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -306,6 +313,7 @@ return {
           width = 40,
           height = 200,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -319,6 +327,7 @@ return {
           width = 40,
           height = 200,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -332,6 +341,7 @@ return {
           width = 920,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -345,6 +355,7 @@ return {
           width = 920,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -358,6 +369,7 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -371,6 +383,7 @@ return {
           width = 40,
           height = 160,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -384,6 +397,7 @@ return {
           width = 3960,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -397,6 +411,7 @@ return {
           width = 2600,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -410,6 +425,7 @@ return {
           width = 1360,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -423,6 +439,7 @@ return {
           width = 40,
           height = 280,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -436,6 +453,7 @@ return {
           width = 40,
           height = 160,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -465,6 +483,7 @@ return {
           width = 80,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["solid"] = true,
@@ -481,8 +500,11 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
+            ["alwaysvisible"] = true,
+            ["break_delay"] = 0,
             ["text"] = "THE LAST PROPHECY.\nTHE STORY'S END.",
             ["texture"] = "prophecy/prophecy_final_icon"
           }
@@ -497,8 +519,11 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
+            ["alwaysvisible"] = true,
+            ["break_delay"] = 0,
             ["text"] = "AND THEN. WHEN ALL HOPE\nIS LOST FOR THE TALE",
             ["texture"] = "prophecy/spr_dw_church_prophecy_end1_icon_0"
           }
@@ -513,6 +538,7 @@ return {
           width = 40,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "finalprophecy.breakprophecy",
@@ -529,8 +555,11 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
+            ["alwaysvisible"] = true,
+            ["break_delay"] = 0,
             ["text"] = "THE FINAL TRAGEDY UNVEILS.",
             ["texture"] = "prophecy/spr_dw_church_prophecy_end1_icon_0"
           }
@@ -545,8 +574,11 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
+            ["alwaysvisible"] = true,
+            ["break_delay"] = 0,
             ["text"] = "TO SAVE THE WORLDS,\nTHERE IS ONLY ONE WAY.",
             ["texture"] = "prophecy/prophecy_final_icon"
           }
@@ -561,6 +593,7 @@ return {
           width = 40,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "finalprophecy.breakprophecy",
@@ -577,6 +610,7 @@ return {
           width = 40,
           height = 80,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "finalprophecy.breakprophecy",
@@ -593,6 +627,7 @@ return {
           width = 40,
           height = 80,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "finalprophecy.final",
@@ -625,6 +660,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -638,6 +674,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
