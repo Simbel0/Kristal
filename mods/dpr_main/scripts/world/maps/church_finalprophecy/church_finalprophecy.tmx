@@ -160,8 +160,8 @@ IS LOST FOR THE TALE</property>
   </object>
   <object id="25" name="script" x="1560" y="800" width="40" height="40">
    <properties>
-    <property name="cutscene" value="finalprophecy.breakprophecy"/>
     <property name="once" type="bool" value="false"/>
+    <property name="script" value="breakprophecy"/>
    </properties>
   </object>
   <object id="26" name="prophecy" x="2560" y="580">
@@ -185,14 +185,14 @@ THERE IS ONLY ONE WAY.</property>
   </object>
   <object id="28" name="script" x="2440" y="600" width="40" height="40">
    <properties>
-    <property name="cutscene" value="finalprophecy.breakprophecy"/>
     <property name="once" type="bool" value="false"/>
+    <property name="script" value="breakprophecy"/>
    </properties>
   </object>
   <object id="29" name="script" x="3080" y="440" width="40" height="80">
    <properties>
-    <property name="cutscene" value="finalprophecy.breakprophecy"/>
     <property name="once" type="bool" value="false"/>
+    <property name="script" value="breakprophecy"/>
    </properties>
   </object>
   <object id="30" name="script" x="3240" y="440" width="40" height="80">

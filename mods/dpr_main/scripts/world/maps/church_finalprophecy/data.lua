@@ -541,8 +541,8 @@ return {
           opacity = 1,
           visible = true,
           properties = {
-            ["cutscene"] = "finalprophecy.breakprophecy",
-            ["once"] = false
+            ["once"] = false,
+            ["script"] = "breakprophecy"
           }
         },
         {
@@ -596,8 +596,8 @@ return {
           opacity = 1,
           visible = true,
           properties = {
-            ["cutscene"] = "finalprophecy.breakprophecy",
-            ["once"] = false
+            ["once"] = false,
+            ["script"] = "breakprophecy"
           }
         },
         {
@@ -613,8 +613,8 @@ return {
           opacity = 1,
           visible = true,
           properties = {
-            ["cutscene"] = "finalprophecy.breakprophecy",
-            ["once"] = false
+            ["once"] = false,
+            ["script"] = "breakprophecy"
           }
         },
         {

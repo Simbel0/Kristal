@@ -20,7 +20,7 @@ return {
 		cutscene:walkTo(ralsei, 480, ralsei.y, 1.2, "up")
 
 		Game.world.timer:after(0.8, function()
-			cutscene:getEvent(23):breakProphecy()
+			Registry.getEventScript("breakprophecy")(nil, Game.world.player)
 		end)
 
 		cutscene:wait(cutscene:walkTo(kris, kris.x, ralsei.y, 1.1, "right"))
@@ -40,22 +40,6 @@ return {
 		Game.world.camera.keep_in_bounds = true
 		cutscene:wait(cutscene:attachCamera())
 		ralsei:remove()
-	end,
-	breakprophecy = function(cutscene)
-		local prophecy
-		local maxdistance = math.huge
-		for i, event in ipairs(Game.world.stage:getObjects(Event)) do
-			if (event.id and event.id:lower() == "prophecy") and event.parent --[[???]] then
-				local dist = MathUtils.dist(Game.world.player.x, Game.world.player.y, event.x, event.y)
-				print(i, dist, maxdistance)
-				if dist < maxdistance then
-					prophecy = event
-					maxdistance = dist
-				end
-			end
-		end
-
-		prophecy:breakProphecy()
 	end,
 	final = function(cutscene)
 		local kris = cutscene:getCharacter("kris")
