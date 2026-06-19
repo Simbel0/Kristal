@@ -1,7 +1,7 @@
 local ProphecyGroundShard, super = Class(Sprite)
 
 function ProphecyGroundShard:init(x, y)
-    super.init(self, "effects/firework_shine", x, y)
+    super.init(self, "world/firework/shine", x, y)
 	self:setScale(2)
 	self.physics.speed_y = 4
 	self:play(1/6)
