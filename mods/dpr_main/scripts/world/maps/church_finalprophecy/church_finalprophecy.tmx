@@ -144,7 +144,7 @@
     <property name="break_delay" type="int" value="0"/>
     <property name="text">THE LAST PROPHECY.
 THE STORY'S END.</property>
-    <property name="texture" value="prophecy/prophecy_final_icon"/>
+    <property name="texture" value="initial2"/>
    </properties>
    <point/>
   </object>
@@ -154,7 +154,7 @@ THE STORY'S END.</property>
     <property name="break_delay" type="int" value="0"/>
     <property name="text">AND THEN. WHEN ALL HOPE
 IS LOST FOR THE TALE</property>
-    <property name="texture" value="prophecy/spr_dw_church_prophecy_end1_icon_0"/>
+    <property name="texture" value="end"/>
    </properties>
    <point/>
   </object>
@@ -169,7 +169,7 @@ IS LOST FOR THE TALE</property>
     <property name="alwaysvisible" type="bool" value="true"/>
     <property name="break_delay" type="int" value="0"/>
     <property name="text" value="THE FINAL TRAGEDY UNVEILS."/>
-    <property name="texture" value="prophecy/spr_dw_church_prophecy_end1_icon_0"/>
+    <property name="texture" value="end"/>
    </properties>
    <point/>
   </object>
@@ -179,7 +179,7 @@ IS LOST FOR THE TALE</property>
     <property name="break_delay" type="int" value="0"/>
     <property name="text">TO SAVE THE WORLDS,
 THERE IS ONLY ONE WAY.</property>
-    <property name="texture" value="prophecy/prophecy_final_icon"/>
+    <property name="texture" value="initial2"/>
    </properties>
    <point/>
   </object>
@@ -189,7 +189,7 @@ THERE IS ONLY ONE WAY.</property>
     <property name="script" value="breakprophecy"/>
    </properties>
   </object>
-  <object id="29" name="script" x="3080" y="440" width="40" height="80">
+  <object id="29" name="script" x="3200" y="440" width="40" height="80">
    <properties>
     <property name="once" type="bool" value="false"/>
     <property name="script" value="breakprophecy"/>

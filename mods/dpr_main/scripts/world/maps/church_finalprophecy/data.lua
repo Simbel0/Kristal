@@ -506,7 +506,7 @@ return {
             ["alwaysvisible"] = true,
             ["break_delay"] = 0,
             ["text"] = "THE LAST PROPHECY.\nTHE STORY'S END.",
-            ["texture"] = "prophecy/prophecy_final_icon"
+            ["texture"] = "initial2"
           }
         },
         {
@@ -525,7 +525,7 @@ return {
             ["alwaysvisible"] = true,
             ["break_delay"] = 0,
             ["text"] = "AND THEN. WHEN ALL HOPE\nIS LOST FOR THE TALE",
-            ["texture"] = "prophecy/spr_dw_church_prophecy_end1_icon_0"
+            ["texture"] = "end"
           }
         },
         {
@@ -561,7 +561,7 @@ return {
             ["alwaysvisible"] = true,
             ["break_delay"] = 0,
             ["text"] = "THE FINAL TRAGEDY UNVEILS.",
-            ["texture"] = "prophecy/spr_dw_church_prophecy_end1_icon_0"
+            ["texture"] = "end"
           }
         },
         {
@@ -580,7 +580,7 @@ return {
             ["alwaysvisible"] = true,
             ["break_delay"] = 0,
             ["text"] = "TO SAVE THE WORLDS,\nTHERE IS ONLY ONE WAY.",
-            ["texture"] = "prophecy/prophecy_final_icon"
+            ["texture"] = "initial2"
           }
         },
         {
@@ -605,7 +605,7 @@ return {
           name = "script",
           type = "",
           shape = "rectangle",
-          x = 3080,
+          x = 3200,
           y = 440,
           width = 40,
           height = 80,
