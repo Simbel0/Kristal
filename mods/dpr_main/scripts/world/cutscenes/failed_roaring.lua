@@ -625,7 +625,7 @@ return function(cutscene)
 	cutscene:setTextboxTop(true)
 
 	cutscene:text("[speed:0.5]* How...[wait:5] is this possible?", "scared", "ralsei")
-	cutscene:text("[speed:0.5]* The prophecy...[wait:5] It said that when too many fountains are opened...", "frighten_look_down", "ralsei")
+	cutscene:text("[speed:0.5]* The prophecy...[wait:5] It said that when too many fountains are opened...", "terrified_down", "ralsei")
 	cutscene:text("[speed:0.5]* The Titans will...", "scared", "ralsei")
 
 	cutscene:wait(0.5)
