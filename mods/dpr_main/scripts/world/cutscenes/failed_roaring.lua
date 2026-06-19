@@ -64,7 +64,7 @@ return function(cutscene)
 	cutscene:setTextboxTop(true)
 	susie:setAnimation({"point_up", 0.2, true})
 
-	cutscene:text("* You...!", "disgust_c", susie)
+	cutscene:text("* You...!", "angry_unsure", susie)
 
 	cutscene:wait(cutscene:panTo(knight.x, knight.y+80, 2))
 	print(knight.y+80)
@@ -109,9 +109,9 @@ return function(cutscene)
 	cutscene:setTextboxTop(false)
 	susie:setAnimation({"point_up", 0.2, true})
 
-	cutscene:text("* Nowhere to run this time,[wait:3] dumbass!", "daring_a", susie)
+	cutscene:text("* Nowhere to run this time,[wait:3] dumbass!", "angry_b_smile", susie)
 	susie:setSprite("shock_up")
-	cutscene:text("* I dunno where you've put Toriel,[wait:3] but...[wait:5] it's over!", "exhausted_c", susie)
+	cutscene:text("* I dunno where you've put Toriel,[wait:3] but...[wait:5] it's over!", "intense_angry", susie)
 	susie:setAnimation({"point_up", 0.2, true})
 	cutscene:text("* The Fountain's just past you,[wait:3] isn't it?", "angry_c", susie)
 
@@ -127,9 +127,9 @@ return function(cutscene)
 	knight:setAnimation({"down_look_forward", 0.1, false})
 	cutscene:text("* ... You...", "bangs_neutral", susie)
 	susie:setAnimation({"point_up", 0.2, true})
-	cutscene:text("* You can't beat us in the Light World,[wait:3] can you?", "daring_a", susie)
+	cutscene:text("* You can't beat us in the Light World,[wait:3] can you?", "angry_b_smile", susie)
 	susie:setSprite("shock_up")
-	cutscene:text("* That's...[wait:5] why you keep running,[wait:3] isn't it?", "daring_b", susie)
+	cutscene:text("* That's...[wait:5] why you keep running,[wait:3] isn't it?", "angry_teeth", susie)
 
 	cutscene:wait(1.5)
 
@@ -140,12 +140,12 @@ return function(cutscene)
 	cutscene:wait(1)
 
 	susie:setAnimation({"point_up", 0.2, true})
-	cutscene:text("* Hey...[wait:5] hey,[wait:3] what's so funny?", "exhausted_c", susie)
+	cutscene:text("* Hey...[wait:5] hey,[wait:3] what's so funny?", "intense_angry", susie)
 	susie.sprite:pause()
-	cutscene:text("* Kris,[wait:3] why...[wait:5] are they laughing...?", "exhausted_c", susie)
+	cutscene:text("* Kris,[wait:3] why...[wait:5] are they laughing...?", "intense_angry", susie)
 	susie:setSprite("shock_up")
 	susie:shake()
-	cutscene:text("* You're laughing 'cause you know I'm right,[wait:3] don't you!?", "daring_a", susie)
+	cutscene:text("* You're laughing 'cause you know I'm right,[wait:3] don't you!?", "angry_b_smile", susie)
 	Game.world.music:stop()
 	susie:resetSprite()
 
@@ -156,7 +156,7 @@ return function(cutscene)
 	knight:setAnimation({"laugh_stop", 1, false})
 	laugh:stop()
 
-	cutscene:text("[speed:0.3]* You lose that Fountain,[wait:3] it's over!!", "daring_b", susie, {skip=false})
+	cutscene:text("[speed:0.3]* You lose that Fountain,[wait:3] it's over!!", "angry_teeth", susie, {skip=false})
 	cutscene:wait(0.5)
 
 	knight:setAnimation({"throw_sword", 5/30, false, frames={"1-5"}})
@@ -171,7 +171,7 @@ return function(cutscene)
 
 	cutscene:wait((5/30)*5+0.25)
 
-	cutscene:text("* Don't...", "frighten_b", ralsei)
+	cutscene:text("* Don't...", "scared", ralsei)
 
 	cutscene:wait(cutscene:walkTo(ralsei, ralsei.x, ralsei.y-28, 0.2))
 	knight:setAnimation({"throw_sword", 3/30, false, frames={"5-12"}})
@@ -181,7 +181,7 @@ return function(cutscene)
 
 	ralsei:setSprite("up_shock")
 	ralsei:shake()
-	cutscene:text("* DON'T MAKE ANOTHER FOUNTAIN!!!", "frighten", ralsei)
+	cutscene:text("* DON'T MAKE ANOTHER FOUNTAIN!!!", "terrified_up", ralsei)
 
 	cutscene:wait(1)
 
@@ -590,8 +590,8 @@ return function(cutscene)
 
 	cutscene:wait(2)
 
-	cutscene:text("[speed:0.3]* ...", "disgust_c", "susie")
-	cutscene:text("[speed:0.3]* ...", "frighten_b", "ralsei")
+	cutscene:text("[speed:0.3]* ...", "angry_unsure", "susie")
+	cutscene:text("[speed:0.3]* ...", "scared", "ralsei")
 	cutscene:text("[speed:0.5]* Nothing...[wait:4] is happening?", "concern_smile", "ralsei")
 
 	kris:setPosition(380, 1770)
@@ -624,9 +624,9 @@ return function(cutscene)
 
 	cutscene:setTextboxTop(true)
 
-	cutscene:text("[speed:0.5]* How...[wait:5] is this possible?", "frighten_b", "ralsei")
+	cutscene:text("[speed:0.5]* How...[wait:5] is this possible?", "scared", "ralsei")
 	cutscene:text("[speed:0.5]* The prophecy...[wait:5] It said that when too many fountains are opened...", "frighten_look_down", "ralsei")
-	cutscene:text("[speed:0.5]* The Titans will...", "frighten_b", "ralsei")
+	cutscene:text("[speed:0.5]* The Titans will...", "scared", "ralsei")
 
 	cutscene:wait(0.5)
 
@@ -662,8 +662,8 @@ return function(cutscene)
 
 	susie:resetSprite()
 	cutscene:text("* I knew it.[wait:5] That prophecy means nothing.", "closed_grin", "susie")
-	cutscene:text("* There's no such thing as a fate written in stone!", "daring_a", "susie")
-	cutscene:text("* So that means...", "daring_b", "susie")
+	cutscene:text("* There's no such thing as a fate written in stone!", "angry_b_smile", "susie")
+	cutscene:text("* So that means...", "angry_teeth", "susie")
 
 	cutscene:wait(wait_knight)
 
@@ -673,7 +673,7 @@ return function(cutscene)
 	cutscene:look(ralsei, "right")
 	susie:setAnimation({"point_up", 0.2, true})
 
-	cutscene:text("* Why should we be scared of you?!", "daring_b", "susie")
+	cutscene:text("* Why should we be scared of you?!", "angry_teeth", "susie")
 
 	cutscene:wait(1.5)
 
@@ -697,7 +697,7 @@ return function(cutscene)
 
 	Game.world.music:play("creepychase", 1, 1.15)
 
-	cutscene:text("* Hey!![wait:3] Where do you think you're going?!", "daring_b", "susie")
+	cutscene:text("* Hey!![wait:3] Where do you think you're going?!", "angry_teeth", "susie")
 
 	susie:resetSprite()
 	cutscene:wait(cutscene:walkPath(susie, {
@@ -720,7 +720,7 @@ return function(cutscene)
 		{180, 1600}
 	}, {speed=10})
 
-	cutscene:text("* SU-SUSIE!![wait:3] WAIT!!!", "frighten", "ralsei")
+	cutscene:text("* SU-SUSIE!![wait:3] WAIT!!!", "terrified_up", "ralsei")
 
 	Game.world.camera.keep_in_bounds = true
 	cutscene:wait(cutscene:attachCamera())

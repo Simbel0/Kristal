@@ -17,7 +17,10 @@ return {
         Game.world.camera.y = 960
 
 		local ralsei = cutscene:spawnNPC("ralsei", 215, 995)
-		cutscene:walkTo(ralsei, 480, ralsei.y, 1.2, "up")
+		ralsei:setSprite("run")
+		cutscene:walkTo(ralsei, 480, ralsei.y, 1.2, "up", nil, nil, function()
+			ralsei:setSprite("walk")
+		end)
 
 		Game.world.timer:after(0.8, function()
 			Registry.getEventScript("breakprophecy")(nil, Game.world.player)
@@ -29,13 +32,15 @@ return {
 
 		cutscene:wait(1)
 
-		cutscene:text("* What...[wait:5] What is happening...", "frighten", "ralsei")
-		cutscene:text("* The Prophecy...[wait:5] It's...", "frighten_b", "ralsei")
+		cutscene:text("* What...[wait:5] What is happening...", "terrified_up", "ralsei")
+		cutscene:text("* The Prophecy...[wait:5] It's...", "scared", "ralsei")
 
-		cutscene:wait(0.5)
+		cutscene:wait(0.2)
 
+		ralsei:setSprite("run")
 		cutscene:walkTo(ralsei, 860, ralsei.y, 1, "up")
-		cutscene:text("* SUSIE,[wait:3] STOP!!!", "frighten", "ralsei")
+		cutscene:wait(0.3)
+		cutscene:text("* SUSIE,[wait:3] STOP!!!", "terrified_up", "ralsei")
 
 		Game.world.camera.keep_in_bounds = true
 		cutscene:wait(cutscene:attachCamera())
@@ -44,13 +49,14 @@ return {
 	final = function(cutscene)
 		local kris = cutscene:getCharacter("kris")
 		local ralsei = cutscene:getCharacter("ralsei")
+		ralsei:setSprite("walk_unhappy")
 
 		cutscene:detachCamera()
 		cutscene:panTo(ralsei.x+10, ralsei.y)
 
 		cutscene:wait(cutscene:walkTo(kris, ralsei.x-100, ralsei.y))
 
-		cutscene:text("* SUSIE,[wait:3] BE CAREFUL!!", "frighten", "ralsei")
+		cutscene:text("* SUSIE,[wait:3] BE CAREFUL!!", "terrified_up", "ralsei")
 
 		Game.world.stage:removeFX("_hsv")
 		Assets.playSound("glassbreak", 0.4, 0.6)
@@ -69,16 +75,16 @@ return {
 
     	cutscene:wait(0.5)
 
-    	cutscene:text("* Looks like it's the end of the way.", "exhausted_a", "susie")
-    	cutscene:text("* You may have beat us once,[wait:3] but you're done now!!", "daring_a", "susie")
-    	cutscene:text("* I don't know what you were planning but it clearly failed.", "exhausted_b", "susie")
-    	cutscene:text("* That prophecy isn't in your favor anymore,[wait:3] is it?", "daring_b", "susie")
+    	cutscene:text("* Looks like it's the end of the way.", "intense_smile", "susie")
+    	cutscene:text("* You may have beat us once,[wait:5] but you're done now!!", "angry_b_smile", "susie")
+    	cutscene:text("* I don't know what you were planning but it clearly failed.", "exhausted_smile", "susie")
+    	cutscene:text("* That prophecy isn't in your favor anymore,[wait:5] is it?", "angry_teeth", "susie")
 
     	cutscene:wait(1)
 
-    	cutscene:text("* You still won't say anything,[wait:3] huh?", "exhausted_b", "susie")
-    	cutscene:text("* In that case, I guess the best thing you can do right now...", "exhausted_b", "susie")
-    	cutscene:text("* Is step down and let me kill you!", "exhausted_c", "susie", {auto=true, skip=false})
+    	cutscene:text("* You still won't say anything,[wait:5] huh?", "exhausted_smile", "susie")
+    	cutscene:text("* In that case,[wait:5] I guess the best thing you can do right now...", "exhausted_smile", "susie")
+    	cutscene:text("* Is step down and let me", "intense_angry", "susie", {auto=true, skip=false})
 
     	Game.world.music:stop()
 
@@ -130,7 +136,7 @@ return {
 
 	    cutscene:wait(1)
 
-	    cutscene:text("* KRIS?!![wait:5]\n* What the hell are you doing?!", "disgust_b", "susie")
+	    cutscene:text("* KRIS?!![wait:5]\n* What the hell are you doing?!", "angry_unsure", "susie")
 
 	    Assets.playSound("knight_jump", 1, 0.8)
 	    local sword = Sprite(knight.sprite:getPath("sword_throw"), kris.x-5, kris.y-60)
@@ -267,19 +273,19 @@ return {
 
 		cutscene:wait(cutscene:walkTo(ralsei, susie.x-150, ralsei.y))
 
-		cutscene:text("* I... I don't know what you want...", "angry_surprise", "ralsei")
-		cutscene:text("* But I won't let you hurt my friends!", "brave_a", "ralsei")
+		cutscene:text("* I...[wait:5] I don't know what you want...", "angry_surprise", "ralsei")
+		cutscene:text("* But I won't let you hurt my friends!", "determined_up_open", "ralsei")
 		cutscene:look(ralsei, "up")
-		cutscene:text("* Susie is right. The prophecy is not relailable anymore.", "small_smile_side", "ralsei")
-		cutscene:text("* I don't know why you wanted to cause the Roaring...", "pensive", "ralsei")
+		cutscene:text("* Susie is right.[wait:5] The prophecy is not reliable anymore.", "small_smile_side", "ralsei")
+		cutscene:text("* I don't know why you wanted to summon a Titan...", "pensive", "ralsei")
 		cutscene:look(ralsei, "right")
-		cutscene:text("* But if it could happen, it would have already!", "brave_a", "ralsei")
+		cutscene:text("* But if it could happen,[wait:5] it would have already!", "determined_up_open", "ralsei")
 		cutscene:text("* You will gain nothing from killing Susie or Kris!!", "angry", "ralsei")
-		cutscene:text("* So... S-So...", "brave_look_down", "ralsei")
+		cutscene:text("* So...[wait:5] S-[wait:2]So...", "determined", "ralsei")
 		cutscene:wait(0.3)
 		ralsei:shake()
 		Assets.playSound("wing")
-		cutscene:text("* LEAVE US ALONE!!", "brave_a", "ralsei")
+		cutscene:text("* LEAVE US ALONE!!", "determined_up_open", "ralsei")
 
 		cutscene:wait(3)
 
