@@ -142,6 +142,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 
     broken_container.timer = Timer()
     broken_container:addChild(broken_container.timer)
+    local timer = broken_container.timer
 
 	self.world.timer:after(delaytime/30, function()
 		if sparkles then
@@ -159,7 +160,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			end
 		end
 		if destroytype < 2 then
-			broken_container.timer:after(120/30, function()
+			timer:after(120/30, function()
 				broken_container:remove()
 			end)
 			self:remove()
@@ -170,14 +171,13 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			Assets.playSound("break1", 1, 0.95)
 		end
 		if not second_silent then
-			broken_container.timer:after(delaytime+2/30, function() Assets.playSound("glassbreak", 0.4, 0.6) end)
-			broken_container.timer:after(delaytime/30, function() Assets.playSound("sparkle_glock", 0.5, 0.8) end)
-			broken_container.timer:after(delaytime/30, function() Assets.playSound("sparkle_glock", 0.5, 0.71) end)
-			broken_container.timer:after(delaytime/30, function() Assets.playSound("punchmed", 0.95, 0.7) end)
+			timer:after(delaytime+2/30, function() Assets.playSound("glassbreak", 0.4, 0.6) end)
+			timer:after(delaytime/30, function() Assets.playSound("sparkle_glock", 0.5, 0.8) end)
+			timer:after(delaytime/30, function() Assets.playSound("sparkle_glock", 0.5, 0.71) end)
+			timer:after(delaytime/30, function() Assets.playSound("punchmed", 0.95, 0.7) end)
 		end
 	end
 
-    local timer = broken_container.timer
     for i, texture in ipairs(sprites) do
         local s = Sprite(texture)
         s:setScale(2)
@@ -188,7 +188,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			s.physics.speed = 2
 			s.physics.friction = 0.5
 			s.physics.direction = math.rad(MathUtils.random(360))
-			broken_container.timer:after(delaytime/30, function()
+			timer:after(delaytime/30, function()
 				s.physics.gravity = 0.5 + MathUtils.random(0.1)
 				s.physics.friction = 0
 				s.physics.speed = 2
@@ -199,10 +199,10 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			s.physics.speed = 2
 			s.physics.friction = 0.5
 			s.physics.direction = math.rad(MathUtils.random(360))
-			broken_container.timer:after(delaytime/30, function()
+			timer:after(delaytime/30, function()
 				s.physics.speed = 4
 				s.physics.friction = 0.4
-				broken_container.timer:lerpVar(s, "alpha", s.alpha, 0, 20)
+				timer:lerpVar(s, "alpha", s.alpha, 0, 20)
 			end)
 		end
 		if destroytype == 2 then
@@ -219,7 +219,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			end
 			s.physics.speed, s.physics.direction = s:getSpeedDir()
 			s.physics.gravity_direction = math.rad(270)
-			broken_container.timer:after(delaytime/30, function()
+			timer:after(delaytime/30, function()
 				s.physics.gravity = 0.25 + MathUtils.random(0.1)
 				s.physics.friction = 0
 				s.physics.speed = 2 + (((#sprites - i) / #sprites) * 15)
@@ -234,7 +234,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			s.physics.friction = 0.5
 			s.physics.direction = math.rad(270)
 			local delay = (delaytime * MathUtils.random(5)) + 1
-			broken_container.timer:after(delay/30, function()
+			timer:after(delay/30, function()
 				s.physics.gravity = 0.5 + MathUtils.random(0.1)
 				s.physics.friction = 0
 				s.physics.speed = 2
