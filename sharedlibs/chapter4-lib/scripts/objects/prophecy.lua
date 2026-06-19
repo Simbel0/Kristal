@@ -133,8 +133,9 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 		delaytime = self.break_delay
 	end
 
-	local broken_container = Object(self.x-self.panel_width, self.y-self.panel_height)
-    broken_container:setScaleOrigin(0.5, 0.5)
+	-- Someone needs to figure out the correct position
+	local broken_container = Object((self.x+self.width/2)-self.panel_width+self.container_offset_x/2, (self.y-self.height/2)-self.panel_height*2+self.container_offset_y/2, self.panel_width, self.panel_height)
+    --broken_container:setScaleOrigin(0.5, 0.5)
     broken_container:setLayer(self:getLayer())
 	broken_container.draw_children_below = 0
     self.parent:addChild(broken_container)
