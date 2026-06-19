@@ -201,7 +201,7 @@ function Prophecy:breakProphecy(type, sprite, sparkles, silent, second_silent)
 			broken_container.timer:after(delaytime/30, function()
 				s.physics.speed = 4
 				s.physics.friction = 0.4
-				broken_container.timer:lerpVar(s, "alpha", alpha, 0, 20)
+				broken_container.timer:lerpVar(s, "alpha", s.alpha, 0, 20)
 			end)
 		end
 		if destroytype == 2 then
