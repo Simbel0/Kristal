@@ -117,11 +117,12 @@ return {
     	slash.layer = 10001
     	Game.world:addChild(slash)
 
-    	Assets.playSound("knight_cut", 4, 0.06)
-	    Assets.playSound("knight_cut", 4, 0.1)
-	    Assets.playSound("knight_cut", 4, 0.12)
-	    Assets.playSound("knight_cut", 4, 0.18)
-	    Assets.playSound("knight_cut", 4, 0.24)
+    	-- TODO: idk figure out why the volume being at 8 like in Deltarune creates a sonic boom
+    	Assets.playSound("knight_cut2", 1, 0.06)
+	    Assets.playSound("knight_cut2", 1, 0.1)
+	    Assets.playSound("knight_cut2", 1, 0.12)
+	    Assets.playSound("knight_cut2", 1, 0.18)
+	    Assets.playSound("knight_cut2", 1, 0.24)
 
 	    cutscene:wait(2)
 
@@ -134,7 +135,7 @@ return {
 	    rect.alpha = 0
 	    slash.alpha = 0
 
-	    Assets.stopSound("knight_cut")
+	    Assets.stopSound("knight_cut2")
 
 	    Assets.playSound("impact")
 	    Assets.playSound("closet_impact", 1, 1)
@@ -216,11 +217,12 @@ return {
 
 		cutscene:text("* You...[wait:10] YOU...", "bangs/shock", "susie", {auto=true, skip=false})
 
-		Assets.playSound("knight_cut", 4, 0.06)
-	    Assets.playSound("knight_cut", 4, 0.1)
-	    Assets.playSound("knight_cut", 4, 0.12)
-	    Assets.playSound("knight_cut", 4, 0.18)
-	    Assets.playSound("knight_cut", 4, 0.24)
+		-- TODO: idk figure out why the volume being at 8 like in Deltarune creates a sonic boom in Kristal
+		Assets.playSound("knight_cut2", 1, 0.06)
+	    Assets.playSound("knight_cut2", 1, 0.1)
+	    Assets.playSound("knight_cut2", 1, 0.12)
+	    Assets.playSound("knight_cut2", 1, 0.18)
+	    Assets.playSound("knight_cut2", 1, 0.24)
 
 	    rect.alpha = 1
 	    slash.alpha = 1
@@ -230,7 +232,7 @@ return {
 	    rect.alpha = 0
 	    slash.alpha = 0
 
-	    Assets.stopSound("knight_cut")
+	    Assets.stopSound("knight_cut2")
 
 	    Assets.playSound("impact")
 	    Assets.playSound("closet_impact", 1, 1)
