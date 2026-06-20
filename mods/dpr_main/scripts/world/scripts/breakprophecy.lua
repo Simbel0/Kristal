@@ -4,7 +4,6 @@ return function(_, chara)
 	for i, event in ipairs(Game.world.stage:getObjects(Event)) do
 		if (event.id and event.id:lower() == "prophecy") and event.parent --[[???]] then
 			local dist = MathUtils.dist(chara.x, chara.y, event.x, event.y)
-			print(i, dist, maxdistance)
 			if dist < maxdistance then
 				prophecy = event
 				maxdistance = dist

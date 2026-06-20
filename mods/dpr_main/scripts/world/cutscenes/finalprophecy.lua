@@ -85,12 +85,12 @@ return {
     	cutscene:wait(0.5)
 
     	local susie = cutscene:spawnNPC("susie", 3800, ralsei.y)
-    	local knight = cutscene:spawnNPC("roaring_knight", 4200, susie.y)
     	susie:setSprite("battle/attackready_1")
+    	local knight = cutscene:spawnNPC("roaring_knight", 4200, susie.y)
     	knight:setAnimation({"droop", 1/2, true})
 
+		cutscene:wait(0.3)
     	cutscene:wait(cutscene:panTo(4000, ralsei.y, 1.5))
-
     	cutscene:wait(0.5)
 
     	cutscene:text("* Looks like it's the end of the way.", "intense_smile", "susie")
@@ -329,30 +329,42 @@ return {
 
 		cutscene:wait(((1/15)*10)+0.2)
 
-		cutscene:wait(cutscene:slideTo(knight, knight.x+SCREEN_WIDTH, knight.y, 2, "inQuad"))
+		cutscene:during(function()
+			if knight.x <= ralsei.x+ralsei.width*4 then
+				cutscene:walkTo(ralsei, ralsei.x, ralsei.y+30, 0.3, "up", true)
+				return false
+			end
+		end)
+		cutscene:wait(cutscene:slideTo(knight, knight.x-SCREEN_WIDTH, knight.y, 2, "inQuad"))
+		cutscene:look(ralsei, "left")
 
-		knight:remove()
+		--knight:remove()
 		sword:remove()
 
 		cutscene:wait(1)
 
-		cutscene:panTo(kris.x+150, Game.world.camera.y)
-		cutscene:wait(cutscene:walkTo(ralsei, ralsei.x+300, ralsei.y))
+		--cutscene:panTo(kris.x+150, Game.world.camera.y)
+		--cutscene:wait(cutscene:walkTo(ralsei, ralsei.x+300, ralsei.y))
 
-		cutscene:text("* It... It worked?")
-		cutscene:text("* Did the Knight really just...")
+		cutscene:text("* It... It worked?", "surprise_smile", "ralsei")
+		cutscene:text("* Where is the Knight even...", "surprise_neutral_side", "ralsei")
 
-		cutscene:look(ralsei, "left")
+		cutscene:look(ralsei, "right")
 
-		cutscene:wait(0.5)
+		cutscene:wait(0.1)
 
-		cutscene:wait(cutscene:alert(ralsei, 1, {play_sound=false}))
+		local _, w = cutscene:alert(ralsei, 1, {play_sound=false}) -- I need to kill myself for that one
+		cutscene:wait(w)
 
-		cutscene:text("* Kris! Susie!")
+		local ralsei_walk = cutscene:walkTo(ralsei, ralsei.x+40, (kris.y-(kris.y-susie.y)/2)-15, 0.25, "right", true)
+
+		cutscene:text("* Kris! Susie!", "shock", "ralsei")
+		cutscene:wait(ralsei_walk)
 
 		Assets.playSound("spellcast")
 
-		cutscene:wait(1)
+		cutscene:wait(cutscene:setAnimation(ralsei, "battle/spell"))
+		ralsei:resetSprite()
 
 		local function healEffect(chara)
 			local flash_sprite = chara.sprite.texture
@@ -379,20 +391,50 @@ return {
 		cutscene:wait(1)
 
 		Assets.playSound("noise")
+		susie:setSprite("battle/defeat")
+		susie:shake()
+		cutscene:wait(0.1)
+		Assets.playSound("noise")
 		kris:setSprite("battle/defeat")
 		kris:shake()
 		kris.y = kris.y - 5
-		cutscene:wait(0.1)
-		Assets.playSound("noise")
-		susie:setSprite("battle/defeat")
-		susie:shake()
 
 		cutscene:wait(0.5)
 
+		cutscene:text("* Are you two okay?", "pleading", "ralsei")
+
+		cutscene:wait(0.1)
+
 		Assets.playSound("wing")
-		kris:resetSprite()
+		--kris:resetSprite()
+		kris:shake()
+		--cutscene:look(kris, "right")
 		susie:resetSprite()
+		susie:shake()
+		susie:setSprite("walk_bangs_unhappy")
+		cutscene:look(susie, "right")
+
+		cutscene:wait(0.5)
+
+		cutscene:text("* ...", "bangs_neutral", susie)
+		cutscene:text("* Yeah, we're fine.", "bangs_smile", susie)
+
+		cutscene:wait(0.15)
+
+		cutscene:wait(cutscene:walkTo(susie, susie.x+140, susie.y, 3))
+
+		cutscene:wait(1)
+		susie:setSprite("walk_unhappy")
+		cutscene:wait(1)
+
+		Game.world.music:play("deltarune/tin_night", 1, 1)
+
+		cutscene:text("* It just sucks we couldn't stop the Knight here and there.", "annoyed_down_smile", susie)
 
 		cutscene:wait(2)
+		cutscene:wait(cutscene:walkTo(susie, ralsei.x+susie.width+30, ralsei.y))
+		susie:setSprite("walk")
+		cutscene:text("* But hey, you did awesome there!", "sincere_smile", susie)
+		cutscene:text("* I'm sure the Knight was shivering in its dark boots.", "smile", susie)
 	end
 }
