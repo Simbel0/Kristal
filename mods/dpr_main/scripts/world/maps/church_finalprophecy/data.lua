@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 8,
-  nextobjectid = 32,
+  nextobjectid = 33,
   properties = {
     ["music"] = "creepychase"
   },
@@ -34,7 +34,7 @@ return {
       width = 181,
       height = 30,
       id = 2,
-      name = "Calque de Tuiles 2",
+      name = "tiles_main",
       class = "",
       visible = true,
       opacity = 1,
@@ -84,7 +84,7 @@ return {
       width = 181,
       height = 30,
       id = 3,
-      name = "Calque de Tuiles 3",
+      name = "tiles_mid",
       class = "",
       visible = true,
       opacity = 1,
@@ -134,7 +134,7 @@ return {
       width = 181,
       height = 30,
       id = 1,
-      name = "Calque de Tuiles 1",
+      name = "tiles_wood",
       class = "",
       visible = true,
       opacity = 1,
@@ -632,6 +632,22 @@ return {
           properties = {
             ["cutscene"] = "finalprophecy.final",
             ["once"] = false
+          }
+        },
+        {
+          id = 32,
+          name = "roomglow",
+          type = "",
+          shape = "rectangle",
+          x = 320,
+          y = 1160,
+          width = 40,
+          height = 40,
+          rotation = 0,
+          opacity = 1,
+          visible = true,
+          properties = {
+            ["active"] = true
           }
         }
       }

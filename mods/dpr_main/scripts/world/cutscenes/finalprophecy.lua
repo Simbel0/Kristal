@@ -58,11 +58,29 @@ return {
 
 		cutscene:text("* SUSIE,[wait:3] BE CAREFUL!!", "terrified_up", "ralsei")
 
-		Game.world.stage:removeFX("_hsv")
+		cutscene:wait(2/30)
+    	local distort = RadialDistort(SCREEN_WIDTH, SCREEN_HEIGHT/2, 1)
+    	Game.world:addChild(distort)
+    	Game.world.stage:removeFX("_hsv")
+		--Game.world:getEvent("roomglow"):remove()
+		--Game.world.map:getTileLayer("floorglow"):getFX("prop").opacity = 1 - 0.3
+		--Game.world:getEvent(62):getFX("prop").opacity = 0.5 - 0.3
+		--Game.world:getEvent(63):getFX("prop").opacity = 0.5 - 0.3
+	    for _,prophecy in ipairs(Game.world.map:getEvents("prophecy")) do
+			if prophecy.panel.hsv then
+				prophecy.panel.hsv = false
+			end
+		end
 		Assets.playSound("glassbreak", 0.4, 0.6)
     	Assets.playSound("sparkle_glock", 0.5, 0.8)
     	Assets.playSound("sparkle_glock", 0.5, 0.71)
     	Assets.playSound("punchmed", 0.95, 0.7)
+
+    	for _,glow in ipairs(Game.world.map:getEvents("roomglow")) do
+			glow.prophecy_glow = false
+			glow.lerpstrength = 0.0625
+			glow.glowactive = false
+		end
 
     	cutscene:wait(0.5)
 
